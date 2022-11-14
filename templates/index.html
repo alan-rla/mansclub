@@ -1,10 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
 
+  <div id="wrapper">
+    <h1>사나이 클럽</h1>
+
+    <nav>
+      <div>챌린지</div>
+      <div>정보 공유</div>
+      <div>자유 게시판</div>
+    </nav>
+
+    <fieldset>
+
+      <main>
+        <form action="" id="mainForm">
+          담을 내용
+        </form>
+      </main>
+
+      <aside>
+        <div>
+          <div id="mainSignup">
+            로그인
+          </div>
+        </div>
+        <content>
+          뉴스
+        </content>
+      </aside>
+    </fieldset>
+
+  </div>
+
+  <footer>
+
+  </footer>
+  항해 99 2조
+
+
 </body>
+<style>
+  * {
+    text-decoration: none;
+    list-style: none;
+    border-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  #wrapper {
+    height: 100%;
+  }
+
+  nav {
+    background-color: aqua;
+    display: flex;
+    margin: 50px 0 50px 0;
+  }
+
+  nav>div {
+    margin-left: 190px;
+  }
+
+  fieldset {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    height: 1000px;
+  }
+
+  #mainForm {
+    background-color: gray;
+    height: 1000px;
+
+
+  }
+
+  #mainSignup {
+    background-color: pink;
+    height: 200px;
+
+  }
+
+  content {
+    background-color: yellowgreen;
+    height: 800px;
+    display: grid;
+
+  }
+
+  footer {
+    height: 100px;
+    margin: auto;
+    /* position: relative;
+	transform: translateY(-100%); */
+    background-color: #000;
+    color: #fff;
+  }
+</style>
+
 </html>
