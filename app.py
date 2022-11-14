@@ -28,6 +28,23 @@ import hashlib
 #################################
 ##  HTML을 주는 부분             ##
 #################################
+# 메인 페이지 로드
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# 자유게시판 포스트
+@app.route('/templates/article', methods=['POST'])
+def article_post():
+    sample_receive = request.form['sample_give']
+    return jsonify({'msg':'저장 완료!'})
+
+# 자유게시판 보여주기
+@app.route('/templates/article',methods=["GET"])
+def article_get():
+    article_list = list(db.article.find({}, {'_id': False}))
+    return jsonify({'comments': article_list})
+
 @app.route('/')
 def home():
     token_receive = request.cookies.get('mytoken')
