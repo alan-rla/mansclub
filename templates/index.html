@@ -23,18 +23,24 @@
 
       <main>
         <form action="" id="mainForm">
-          담을 내용
+          <div id="mainFormDiv">XXX게시판</div>
         </form>
       </main>
 
       <aside>
         <div>
           <div id="mainSignup">
-            로그인
+            <button>로그인</button><br>
+            <button>회원가입</button>
           </div>
         </div>
         <content>
-          뉴스
+          <h2>News</h2>
+          <form action="">
+            <div id="NewsId">
+              News input
+            </div>
+          </form>
         </content>
       </aside>
     </fieldset>
@@ -42,9 +48,12 @@
   </div>
 
   <footer>
-
+ <h3>항해 99 2조</h3>
+  <p>이민용(팀장)</p>
+  <p>김수현</p>
+  <p>권인후</p>
+  <p>김수영</p>
   </footer>
-  항해 99 2조
 
 
 </body>
@@ -55,11 +64,11 @@
     border-style: none;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
 
   h1 {
     margin-top: 50px;
+    margin-left: 50px;
   }
 
   #wrapper {
@@ -70,43 +79,62 @@
     background-color: aqua;
     display: flex;
     margin: 50px 0 50px 0;
+    font-size: 30px;
   }
 
   nav>div {
     margin-left: 190px;
+    border: 1px black solid;
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
   }
+  nav>div:hover{background-color: cornflowerblue}
 
   fieldset {
     display: grid;
     grid-template-columns: 4fr 1fr;
     height: 1000px;
+    box-sizing: content-box;
   }
-
   #mainForm {
     background-color: gray;
     height: 1000px;
+    box-sizing: content-box;
 
 
   }
+  #mainFormDiv{ margin: 0 20px 30px 20px;
+    border: black solid; border-radius: 5px; }
 
   #mainSignup {
     background-color: pink;
     height: 200px;
 
   }
+  #mainSignup>button{width: 200px; height: 80px; margin: 13px 0 0 20px;
+    background-color: limegreen; color: ghostwhite; font-size: 24px; border-radius: 5px }
+  #mainSignup>button:hover{background-color: darkolivegreen}
 
   content {
     background-color: yellowgreen;
     height: 800px;
     display: grid;
 
+
   }
+  content>h2{
+    margin: 30px 0 0 30px;
+  }
+  #NewsId{border: dimgray solid;
+  height: 680px; width: 200px;
+  margin-left: 20px;}
 
   footer {
-    height: 100px;
+    padding: 30px 0 0 50px;
+    height: 200px;
     margin: auto;
-    /* position: relative;
-	transform: translateY(-100%); */
+     /*position: relative;*/
+	/*transform: translateY(-100%);*/
     background-color: #000;
     color: #fff;
   }
