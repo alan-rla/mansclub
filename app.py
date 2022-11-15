@@ -52,7 +52,7 @@ def free_board_get():
     # return dumps({'trading_posts': trading_list})
     return jsonify({'comments': free_board_list})
 
-# 오늘의 뉴스 크롤링
+# 뉴스 크롤링
 news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
 news_list = []
 @app.route('/news', methods=['GET'])
