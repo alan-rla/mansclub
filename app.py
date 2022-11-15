@@ -15,7 +15,7 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/
 client = MongoClient('mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority')
 
 # CSS 렌더링
-app = Flask(__name__, template_folder='templates', static_folder='')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # DB 주소
 db = client.mansclub
