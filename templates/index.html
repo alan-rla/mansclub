@@ -13,7 +13,7 @@
     function show_post() {
         alert("작동")
         $('#borde_wrapper').empty()
-         let num = $('#numId').val()
+        let num = $('#numId').val()
         let title = $('#titleId').val()
         let writer = $('#writerId').val()
         let contents = $('#contentsId').val()
@@ -22,14 +22,13 @@
         $.ajax({
             type: "POST",
             url: "/guhaejo/view-count",
-            data: {num_give: num, titile_give: title, id_give: writer, post_give: contents, time_give: date},
+            data: { num_give: num, title_give: title, id_give: writer, post_give: contents, time_give: date },
             success: function (response) {
-                response('msg')
+                alert(response['msg'])
             }
-        });
+        }); $('#borde_wrapper').append()
     }
-        $('#borde_wrapper').append()
-    }
+
     function show_imformation() {
         alert("작동")
         $('#borde_wrapper').empty()
@@ -40,94 +39,133 @@
         $('#borde_wrapper').empty()
         $('#borde_wrapper').append()
     }
+    function writing() {
+        alert('작동함')
+        $('#writeWrapper').css('visibility', 'visible')
+    }
+    function upload() {
+        let upNum = $('#userNum').val()
+        let upTitle = $('#userTitle').val()
+        let upContents = $('#userContents').val()
+        // let upId =$('#userId').val()
+        let upTime = $('#userDate').val()
+
+        $.ajax({
+            type: "POST",
+            url: "/guhaejo/view-count",
+            data: { num_give: upNum, title_give: upTitle, post_give: contents, time_give: upTime },
+            success: function (response) {
+                alert(response['msg'])
+            }
+        });
+    }
+
 </script>
 
 <body>
 
-<div id="wrapper">
-    <h1>사나이 클럽</h1>
+    <div id="wrapper">
+        <h1>사나이 클럽</h1>
 
-    <nav>
-        <div onclick="show_post()">챌린지</div>
-        <div onclick="show_imformation()">정보 공유</div>
-        <div onclick="show_free()">자유 게시판</div>
-    </nav>
+        <nav>
+            <div onclick="show_post()">챌린지</div>
+            <div onclick="show_imformation()">정보 공유</div>
+            <div onclick="show_free()">자유 게시판</div>
+        </nav>
 
-    <fieldset>
+        <fieldset>
 
-        <main>
-            <form action="" id="mainForm">
-                <p>*첼린지를 클릭해 보세요</p>
-                <div id="borde_wrapper">
-                    <div class="borde_title">
-                        <strong>첼린저 게시판</strong>
-                    </div>
-                    <div class="bordeListWrapper">
-                        <div class="borde_list">
-                            <div class="top">
-                                <div id="numId" class="num">번호</div>
-                                <div id="titleId" class="title">제목</div>
-                                <div id="contentsId" class="contents">글내용</div>
-                                <div id="writerId" class="writer">작성자</div>
-                                <div id="dateId" class="date">날짜</div>
-                                <div id="scoreId" class="score">점수</div>
+            <main>
+                <form action="" id="mainForm">
+                    <p>*첼린지를 클릭해 보세요</p>
+                    <div id="borde_wrapper">
+                        <div class="borde_title">
+                            <strong>첼린저 게시판</strong>
+                        </div>
+                        <div class="bordeListWrapper">
+                            <div class="borde_list">
+                                <div class="top">
+                                    <textarea id="titleId" class="title">제목</textarea>
+                                    <textarea id="numId" class="num">번호</textarea>
+                                    <textarea id="contentsId" class="contents">글내용</textarea>
+                                    <textarea id="writerId" class="writer">작성자</textarea>
+                                    <textarea id="dateId" class="date">날짜</textarea>
+                                    <textarea id="scoreId" class="score">점수</textarea>
+                                </div>
+                                <div class="top">
+                                    <textarea class="num">5</textarea>
+                                    <textarea class="title">글 제목</textarea>
+                                    <textarea class="contents"></textarea>
+                                    <textarea class="writer">김수현</textarea>
+                                    <textarea class="date">11.15</textarea>
+                                    <textarea class="score">5</textarea>
+                                </div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div borde_page>
+
+                            </div>
+                            <div btn_wrapper>
+
+                            </div>
+
+                        </div>
+                        <div id="writeWrapper">
+                            <div class="writeTable">
+                                <div>번호</div>
+                                <div>제목</div>
+                                <div>내용</div>
+                                <div>작성자</div>
+                                <div>날짜</div>
                             </div>
                             <div>
-                                <div class="num">5</div>
-                                <div class="title">글 제목</div>
-                                <div class="contents"></div>
-                                <div class="writer">김수현</div>
-                                <div class="date">11.15</div>
-                                <div class="score">5</div>
+                                <label for=""></label><input type="text" id="userNum">
+                                <label for=""></label><input type="text" name="" id="userTitle">
+                                <label for=""></label><input type="text" name="" id="userContents">
+                                <label for=""></label><input type="text" name="" id="userId">
+                                <label for=""></label><input type="text" name="" id="userDate">
                             </div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <button class="writeBtnPlus" onclick="upload()">등록</button>
                         </div>
-                        <div borde_page>
-
-                        </div>
-                        <div btn_wrapper>
-
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-        </main>
-
-        <aside>
-            <div>
-                <div id="mainSignup">
-                    <button>로그인</button>
-                    <br>
-                    <button>회원가입</button>
-                </div>
-            </div>
-            <content>
-                <h2>News</h2>
-                <form action="">
-                    <div id="NewsId">
-                        News input
+                        <button class="writeBtn" onclick="writing()" type="button">글쓰기</button>
                     </div>
                 </form>
-            </content>
-        </aside>
-    </fieldset>
+            </main>
 
-</div>
+            <aside>
+                <div>
+                    <div id="mainSignup">
+                        <button>로그인</button>
+                        <br>
+                        <button>회원가입</button>
+                    </div>
+                </div>
+                <content>
+                    <h2>News</h2>
+                    <form action="">
+                        <div id="NewsId">
+                            News input
+                        </div>
+                    </form>
+                </content>
+            </aside>
+        </fieldset>
 
-<footer>
-    <h2>항해 99 2조</h2>
-    <p>이민용(팀장)</p>
-    <p>김수현</p>
-    <p>권인후</p>
-    <p>김수영</p>
-    //있던 내용 사라지기
-    // ${'#border_title'}.append((${'#test'}))
-    //새 게시판 내용 들고오기=
-</footer>
+    </div>
+
+    <footer>
+        <h2>항해 99 2조</h2>
+        <p>이민용(팀장)</p>
+        <p>김수현</p>
+        <p>권인후</p>
+        <p>김수영</p>
+        //있던 내용 사라지기
+        // ${'#border_title'}.append((${'#test'}))
+        //새 게시판 내용 들고오기=
+    </footer>
 
 
 </body>
@@ -171,14 +209,14 @@
         font-size: 30px;
     }
 
-    nav > div {
+    nav>div {
         margin: 0 30px 0 38px;
         border: 1px black solid;
         border-radius: 5px;
         padding: 3px 10px 3px 10px;
     }
 
-    nav > div:hover {
+    nav>div:hover {
         background-color: cornflowerblue
     }
 
@@ -195,7 +233,7 @@
         box-sizing: content-box;
     }
 
-    #mainForm > p {
+    #mainForm>p {
         margin: 0 0 10px 20px;
         color: red;
     }
@@ -206,14 +244,60 @@
         margin-left: 30px;
         border: black solid 1px;
     }
-    .borde_list{
+
+    .borde_list {
         border-top: #000000 solid;
     }
-    .borde_list>div{border-bottom: 1px #ddd solid}
-    .borde_list>div.top{border-bottom: 2px #999 solid }
-    .borde_list>div:last-child{border-bottom: 1px #000000 solid}
 
-    .borde_list>div>div{display: inline-block}
+    .borde_list>div {
+        border-bottom: 1px #ddd solid
+    }
+
+    .borde_list>div.top {
+        border-bottom: 2px #999 solid
+    }
+
+    .borde_list>div:last-child {
+        border-bottom: 1px #000000 solid
+    }
+
+    .borde_list>div>div {
+        display: inline-block
+    }
+
+    .top textarea {
+        width: 10%;
+    }
+
+    .top>textarea:nth-of-type(3) {
+        width: 40%;
+    }
+
+    .top #writeWrapper {
+        visibility: hidden;
+    }
+
+    .writeTable>div {
+        display: inline-block;
+        width: 10%;
+    }
+
+    .writeTable>div:nth-of-type(3) {
+        width: 40%;
+    }
+
+    .writeBtn {
+        width: 15%;
+        height: 5%;
+        margin-top: 20px;
+
+    }
+
+    .writeBtnPlus {
+        width: 15%;
+        height: 5%;
+    }
+
 
 
     #mainSignup {
@@ -222,7 +306,7 @@
 
     }
 
-    #mainSignup > button {
+    #mainSignup>button {
         width: 260px;
         height: 80px;
         margin: 13px 0 0 20px;
@@ -232,7 +316,7 @@
         border-radius: 5px
     }
 
-    #mainSignup > button:hover {
+    #mainSignup>button:hover {
         background-color: darkolivegreen
     }
 
@@ -244,7 +328,7 @@
 
     }
 
-    content > h2 {
+    content>h2 {
         margin: 30px 0 0 30px;
     }
 
@@ -265,7 +349,7 @@
         color: #fff;
     }
 
-    footer > p {
+    footer>p {
         margin-top: 10px;
     }
 </style>
