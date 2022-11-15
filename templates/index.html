@@ -12,22 +12,22 @@
 <script>
     function show_post() {
         alert("작동")
-        $('#borde_wrapper').empty()
-         let num = $('#numId').val()
+        // $('#borde_wrapper').empty()
+        let num = $('#numId').val()
         let title = $('#titleId').val()
         let writer = $('#writerId').val()
         let contents = $('#contentsId').val()
         let date = $('#dateId').val()
-
+        
         $.ajax({
             type: "POST",
-            url: "/guhaejo/view-count",
-            data: {num_give: num, titile_give: title, id_give: writer, post_give: contents, time_give: date},
+            url: "/templates/free_board",
+            data: {num_give: num, title_give: title, writer_give: writer, post_give: contents, time_give: date},
             success: function (response) {
-                response('msg')
+                alert(response['msg'])
+                window.location.reload()
             }
         });
-    }
         $('#borde_wrapper').append()
     }
     function show_imformation() {
@@ -39,6 +39,32 @@
         alert("작동")
         $('#borde_wrapper').empty()
         $('#borde_wrapper').append()
+    }
+
+    // 오늘의 뉴스
+    $(document).ready(function () {        
+        $('#today_news').remove() 
+        show_news();
+    });
+    function show_news() {               
+        $.ajax({
+            type: 'GET',
+            url: '/news',
+            data: {},
+            success: function (response) {
+                let rows = response['news']
+                for (const row of rows) {
+                    let rank = row['rank']
+                    let title = row['title']
+                    let link = row['link']
+
+                    let temp_html = `<li>
+                                    <strong>${rank} </strong><a href="${link}">${title}</a>
+                                    </li>`                                    
+                    $('#today_news').append(temp_html)
+                }
+            }
+        });
     }
 </script>
 
@@ -65,12 +91,12 @@
                     <div class="bordeListWrapper">
                         <div class="borde_list">
                             <div class="top">
-                                <div id="numId" class="num">번호</div>
-                                <div id="titleId" class="title">제목</div>
-                                <div id="contentsId" class="contents">글내용</div>
-                                <div id="writerId" class="writer">작성자</div>
-                                <div id="dateId" class="date">날짜</div>
-                                <div id="scoreId" class="score">점수</div>
+                                <textarea id="numId"></textarea>
+                                <textarea id="titleId"></textarea>
+                                <textarea id="contentsId"></textarea>
+                                <textarea id="writerId"></textarea>
+                                <textarea id="dateId"></textarea>
+                                <textarea id="scoreId"></textarea>
                             </div>
                             <div>
                                 <div class="num">5</div>
@@ -109,7 +135,8 @@
                 <h2>News</h2>
                 <form action="">
                     <div id="NewsId">
-                        News input
+                        <ul id="today_news">
+                        </ul>                        
                     </div>
                 </form>
             </content>
@@ -251,7 +278,7 @@
     #NewsId {
         border: dimgray solid;
         height: 680px;
-        width: 260px;
+        width: 320px;
         margin-left: 20px;
     }
 
