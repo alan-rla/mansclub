@@ -2,214 +2,255 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function show_post() {
+        alert("작동")
+        $('#borde_wrapper').empty()
+        $('#borde_wrapper').append()
+    }
+    function show_imformation() {
+        alert("작동")
+        $('#borde_wrapper').empty()
+        $('#borde_wrapper').append()
+    }
+    function show_free() {
+        alert("작동")
+        $('#borde_wrapper').empty()
+        $('#borde_wrapper').append()
+    }
+</script>
 
 <body>
 
-  <div id="wrapper">
+<div id="wrapper">
     <h1>사나이 클럽</h1>
 
     <nav>
-      <div>챌린지</div>
-      <div>정보 공유</div>
-      <div>자유 게시판</div>
+        <div onclick="show_post()">챌린지</div>
+        <div onclick="show_imformation()">정보 공유</div>
+        <div onclick="show_free()">자유 게시판</div>
     </nav>
 
     <fieldset>
 
-      <main>
-        <form action="" id="mainForm">
-          <p>*첼린지를 클릭해 보세요</p>
-          <div class="borde_wrapper">
-            <div class="borde_title">
-              <strong>자유게시판</strong>
-            </div>
-            <div class="borde_list_wrapper">
-              <div class="borde_list">
-                <div class="top">
-                  <div class="num">번호</div>
-                  <div class="title">제목</div>
-                  <div class="writer">작성자</div>
-                  <div class="date">날짜</div>
-                  <div class="score">점수</div>
+        <main>
+            <form action="" id="mainForm">
+                <p>*첼린지를 클릭해 보세요</p>
+                <div id="borde_wrapper">
+                    <div class="borde_title">
+                        <strong>자유게시판</strong>
+                    </div>
+                    <div class="bordeListWrapper">
+                        <div class="borde_list">
+                            <div class="top">
+                                <div id="numId">번호</div>
+                                <div id="titleId">제목</div>
+                                <div id="contentsId">글내용</div>
+                                <div id="writerId">작성자</div>
+                                <div id="dateId">날짜</div>
+                                <div id="scoreId">점수</div>
+                            </div>
+                            <div>
+                                <div class="num">5</div>
+                                <div class="title">글 제목이 들어갑니다</div>
+                                <div class="writer">김수현</div>
+                                <div class="date">11.15</div>
+                                <div class="score">5</div>
+                            </div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div borde_page>
+
+                        </div>
+                        <div btn_wrapper>
+
+                        </div>
+
+                    </div>
                 </div>
-                <div>
-                  <div class="num">5</div>
-                  <div class="title">글 제목이 들어갑니다</div>
-                  <div class="writer">김수현</div>
-                  <div class="date">11.15</div>
-                  <div class="score">5</div>
+            </form>
+        </main>
+
+        <aside>
+            <div>
+                <div id="mainSignup">
+                    <button>로그인</button>
+                    <br>
+                    <button>회원가입</button>
                 </div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div borde_page>
-
-              </div>
-              <div btn_wrapper>
-
-              </div>
-
             </div>
-          </div>
-        </form>
-      </main>
-
-      <aside>
-        <div>
-          <div id="mainSignup">
-            <button>로그인</button><br>
-            <button>회원가입</button>
-          </div>
-        </div>
-        <content>
-          <h2>News</h2>
-          <form action="">
-            <div id="NewsId">
-              News input
-            </div>
-          </form>
-        </content>
-      </aside>
+            <content>
+                <h2>News</h2>
+                <form action="">
+                    <div id="NewsId">
+                        News input
+                    </div>
+                </form>
+            </content>
+        </aside>
     </fieldset>
 
-  </div>
+</div>
 
-  <footer>
+<footer>
     <h2>항해 99 2조</h2>
     <p>이민용(팀장)</p>
     <p>김수현</p>
     <p>권인후</p>
     <p>김수영</p>
-  </footer>
+    //있던 내용 사라지기
+    // ${'#border_title'}.append((${'#test'}))
+    //새 게시판 내용 들고오기=
+</footer>
 
 
 </body>
+
 <style>
-  * {
-    text-decoration: none;
-    list-style: none;
-    border-style: none;
-    margin: 0;
-    padding: 0;
-  }
+    * {
+        text-decoration: none;
+        list-style: none;
+        border-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-  ul,
-  li {
-    list-style: none;
-  }
-a{ text-decoration: none;
-  color: inherit}
-  h1 {
-    margin-top: 50px;
-    margin-left: 50px;
-    font-size: 60px;
-  }
+    ul,
+    li {
+        list-style: none;
+    }
 
-  #wrapper {
-    height: 100%;
-  }
+    a {
+        text-decoration: none;
+        color: inherit
+    }
 
-  nav {
-    background-color: aqua;
-    display: flex;
-    margin: 50px 0 50px 0;
-    font-size: 30px;
-  }
+    h1 {
+        margin-top: 50px;
+        margin-left: 50px;
+        font-size: 60px;
+        border: black 1px solid;
+        border-radius: 30px;
+        width: 350px;
+    }
 
-  nav>div {
-    margin: 0 30px 0 38px;
-    border: 1px black solid;
-    border-radius: 5px;
-    padding: 3px 10px 3px 10px;
-  }
+    #wrapper {
+        height: 100%;
+    }
 
-  nav>div:hover {
-    background-color: cornflowerblue
-  }
+    nav {
+        background-color: aqua;
+        display: flex;
+        margin: 50px 0 50px 0;
+        font-size: 30px;
+    }
 
-  fieldset {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    height: 1000px;
-    box-sizing: content-box;
-  }
+    nav > div {
+        margin: 0 30px 0 38px;
+        border: 1px black solid;
+        border-radius: 5px;
+        padding: 3px 10px 3px 10px;
+    }
 
-  #mainForm {
-    background-color: gray;
-    height: 1000px;
-    box-sizing: content-box;
-  }
+    nav > div:hover {
+        background-color: cornflowerblue
+    }
 
-  #mainForm>p {
-    margin: 0 0 10px 20px;
-    color: red;
-  }
-  .borde_wrapper{
-    width: 90%; height: 94%;
-    margin-left: 30px;
-    border: black solid 1px;
-  }
+    fieldset {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        height: 1000px;
+        box-sizing: content-box;
+    }
 
+    #mainForm {
+        background-color: gray;
+        height: 1000px;
+        box-sizing: content-box;
+    }
 
-  #mainSignup {
-    background-color: pink;
-    height: 200px;
+    #mainForm > p {
+        margin: 0 0 10px 20px;
+        color: red;
+    }
 
-  }
-
-  #mainSignup>button {
-    width: 260px;
-    height: 80px;
-    margin: 13px 0 0 20px;
-    background-color: limegreen;
-    color: ghostwhite;
-    font-size: 24px;
-    border-radius: 5px
-  }
-
-  #mainSignup>button:hover {
-    background-color: darkolivegreen
-  }
-
-  content {
-    background-color: yellowgreen;
-    height: 800px;
-    display: grid;
+    #borde_wrapper {
+        width: 90%;
+        height: 94%;
+        margin-left: 30px;
+        border: black solid 1px;
+    }
+    .borde_list{
+        border-top: #000000 solid;
+    }
+    .borde_list>div{border-bottom: 1px #ddd solid}
+    .borde_list>div.top{border-bottom: 2px #999 solid }
+    .borde_list>div:last-child{border-bottom: 1px #000000 solid}
 
 
-  }
 
-  content>h2 {
-    margin: 30px 0 0 30px;
-  }
+    #mainSignup {
+        background-color: pink;
+        height: 200px;
 
-  #NewsId {
-    border: dimgray solid;
-    height: 680px;
-    width: 260px;
-    margin-left: 20px;
-  }
+    }
 
-  footer {
-    padding: 30px 0 0 50px;
-    height: 200px;
-    margin: auto;
-    /*position: relative;*/
-    /*transform: translateY(-100%);*/
-    background-color: #000;
-    color: #fff;
-  }
+    #mainSignup > button {
+        width: 260px;
+        height: 80px;
+        margin: 13px 0 0 20px;
+        background-color: limegreen;
+        color: ghostwhite;
+        font-size: 24px;
+        border-radius: 5px
+    }
 
-  footer>p {
-    margin-top: 10px;
-  }
+    #mainSignup > button:hover {
+        background-color: darkolivegreen
+    }
+
+    content {
+        background-color: yellowgreen;
+        height: 800px;
+        display: grid;
+
+
+    }
+
+    content > h2 {
+        margin: 30px 0 0 30px;
+    }
+
+    #NewsId {
+        border: dimgray solid;
+        height: 680px;
+        width: 260px;
+        margin-left: 20px;
+    }
+
+    footer {
+        padding: 30px 0 0 50px;
+        height: 200px;
+        margin: auto;
+        /*position: relative;*/
+        /*transform: translateY(-100%);*/
+        background-color: #000;
+        color: #fff;
+    }
+
+    footer > p {
+        margin-top: 10px;
+    }
 </style>
 
 </html>
