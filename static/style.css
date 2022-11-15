@@ -30,7 +30,6 @@
     }
 
     nav {
-      background-color: aqua;
       display: flex;
       margin: 50px 0 50px 0;
       font-size: 30px;
@@ -44,7 +43,8 @@
     }
 
     nav>div:hover {
-      background-color: cornflowerblue
+      background-color: cornflowerblue;
+      color: #fff;
     }
 
     fieldset {
@@ -63,6 +63,12 @@
     #mainForm>p {
       margin: 0 0 10px 20px;
       color: red;
+    }
+
+    .borde_title {
+      text-align: center;
+      height: 5%;
+      font-size: 24px;
     }
 
     #borde_wrapper {
@@ -100,35 +106,65 @@
       width: 40%;
     }
 
+    .top>input {
+      height: 30px;
+    }
+
+    .top>input:nth-of-type(1) {
+      width: 20%;
+      margin: 0 18px 0 20px;
+    }
+
+    .top>input:nth-of-type(2) {
+      width: 58%;
+      margin-right: 18px;
+    }
+
     #writeWrapper {
       visibility: hidden;
     }
 
     .writeTable>div {
       display: inline-block;
-      width: 10%;
+      margin-bottom: 20px;
     }
 
-    .writeTable>div:nth-of-type(3) {
-      width: 40%;
+    .writeTable>div:nth-of-type(1) {
+      width: 20%;
+      margin: 0 20px 0 20px;
+    }
+
+    .writeTable>div:nth-of-type(2) {
+      width: 60%;
+      margin-right: 8px;
     }
 
     .writeBtn {
       width: 15%;
       height: 5%;
       margin-top: 20px;
+      float: right;
+    }
 
+    .writeBtn:hover {
+      background-color: #000;
+      color: #fff;
     }
 
     .writeBtnPlus {
       width: 15%;
-      height: 5%;
+      height: 30px;
+      float: right;
+    }
+
+    .writeBtnPlus:hover {
+      background-color: #000;
+      color: #fff;
     }
 
 
 
     #mainSignup {
-      background-color: pink;
       height: 200px;
 
     }
