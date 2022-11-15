@@ -1,9 +1,10 @@
+//자유게시판 클릭 -> 게시판 내용 + 글쓰기 버튼 불러오기
 function show_free_board() {
     alert("작동")
     $('#borde_wrapper').empty()
     $('#borde_wrapper').append()
 }
-
+//자유게시판 글쓴 내용 DB에 저장
 function write_free_board() {
     let upTitle = $('#userTitle').val()
     let upContents = $('#userContents').val()
