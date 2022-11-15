@@ -14,6 +14,9 @@ ca=certifi.where()
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 client = MongoClient('mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority')
 
+# CSS 렌더링
+app = Flask(__name__, template_folder='templates', static_folder='')
+
 db = client.mansclub
 
 # 크롤링
