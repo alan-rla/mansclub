@@ -23,7 +23,41 @@
 
       <main>
         <form action="" id="mainForm">
-          <div id="mainFormDiv">XXX게시판</div>
+          <p>*첼린지를 클릭해 보세요</p>
+          <div class="borde_wrapper">
+            <div class="borde_title">
+              <strong>자유게시판</strong>
+            </div>
+            <div class="borde_list_wrapper">
+              <div class="borde_list">
+                <div class="top">
+                  <div class="num">번호</div>
+                  <div class="title">제목</div>
+                  <div class="writer">작성자</div>
+                  <div class="date">날짜</div>
+                  <div class="score">점수</div>
+                </div>
+                <div>
+                  <div class="num">5</div>
+                  <div class="title">글 제목이 들어갑니다</div>
+                  <div class="writer">김수현</div>
+                  <div class="date">11.15</div>
+                  <div class="score">5</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div borde_page>
+
+              </div>
+              <div btn_wrapper>
+
+              </div>
+
+            </div>
+          </div>
         </form>
       </main>
 
@@ -48,11 +82,11 @@
   </div>
 
   <footer>
- <h3>항해 99 2조</h3>
-  <p>이민용(팀장)</p>
-  <p>김수현</p>
-  <p>권인후</p>
-  <p>김수영</p>
+    <h2>항해 99 2조</h2>
+    <p>이민용(팀장)</p>
+    <p>김수현</p>
+    <p>권인후</p>
+    <p>김수영</p>
   </footer>
 
 
@@ -66,9 +100,16 @@
     padding: 0;
   }
 
+  ul,
+  li {
+    list-style: none;
+  }
+a{ text-decoration: none;
+  color: inherit}
   h1 {
     margin-top: 50px;
     margin-left: 50px;
+    font-size: 60px;
   }
 
   #wrapper {
@@ -83,37 +124,59 @@
   }
 
   nav>div {
-    margin-left: 190px;
+    margin: 0 30px 0 38px;
     border: 1px black solid;
     border-radius: 5px;
     padding: 3px 10px 3px 10px;
   }
-  nav>div:hover{background-color: cornflowerblue}
+
+  nav>div:hover {
+    background-color: cornflowerblue
+  }
 
   fieldset {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
     height: 1000px;
     box-sizing: content-box;
   }
+
   #mainForm {
     background-color: gray;
     height: 1000px;
     box-sizing: content-box;
-
-
   }
-  #mainFormDiv{ margin: 0 20px 30px 20px;
-    border: black solid; border-radius: 5px; }
+
+  #mainForm>p {
+    margin: 0 0 10px 20px;
+    color: red;
+  }
+  .borde_wrapper{
+    width: 90%; height: 94%;
+    margin-left: 30px;
+    border: black solid 1px;
+  }
+
 
   #mainSignup {
     background-color: pink;
     height: 200px;
 
   }
-  #mainSignup>button{width: 200px; height: 80px; margin: 13px 0 0 20px;
-    background-color: limegreen; color: ghostwhite; font-size: 24px; border-radius: 5px }
-  #mainSignup>button:hover{background-color: darkolivegreen}
+
+  #mainSignup>button {
+    width: 260px;
+    height: 80px;
+    margin: 13px 0 0 20px;
+    background-color: limegreen;
+    color: ghostwhite;
+    font-size: 24px;
+    border-radius: 5px
+  }
+
+  #mainSignup>button:hover {
+    background-color: darkolivegreen
+  }
 
   content {
     background-color: yellowgreen;
@@ -122,21 +185,30 @@
 
 
   }
-  content>h2{
+
+  content>h2 {
     margin: 30px 0 0 30px;
   }
-  #NewsId{border: dimgray solid;
-  height: 680px; width: 200px;
-  margin-left: 20px;}
+
+  #NewsId {
+    border: dimgray solid;
+    height: 680px;
+    width: 260px;
+    margin-left: 20px;
+  }
 
   footer {
     padding: 30px 0 0 50px;
     height: 200px;
     margin: auto;
-     /*position: relative;*/
-	/*transform: translateY(-100%);*/
+    /*position: relative;*/
+    /*transform: translateY(-100%);*/
     background-color: #000;
     color: #fff;
+  }
+
+  footer>p {
+    margin-top: 10px;
   }
 </style>
 
