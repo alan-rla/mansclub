@@ -13,6 +13,21 @@
     function show_post() {
         alert("작동")
         $('#borde_wrapper').empty()
+         let num = $('#numId').val()
+        let title = $('#titleId').val()
+        let writer = $('#writerId').val()
+        let contents = $('#contentsId').val()
+        let date = $('#dateId').val()
+
+        $.ajax({
+            type: "POST",
+            url: "/guhaejo/view-count",
+            data: {num_give: num, titile_give: title, id_give: writer, post_give: contents, time_give: date},
+            success: function (response) {
+                response('msg')
+            }
+        });
+    }
         $('#borde_wrapper').append()
     }
     function show_imformation() {
@@ -45,21 +60,22 @@
                 <p>*첼린지를 클릭해 보세요</p>
                 <div id="borde_wrapper">
                     <div class="borde_title">
-                        <strong>자유게시판</strong>
+                        <strong>첼린저 게시판</strong>
                     </div>
                     <div class="bordeListWrapper">
                         <div class="borde_list">
                             <div class="top">
-                                <div id="numId">번호</div>
-                                <div id="titleId">제목</div>
-                                <div id="contentsId">글내용</div>
-                                <div id="writerId">작성자</div>
-                                <div id="dateId">날짜</div>
-                                <div id="scoreId">점수</div>
+                                <div id="numId" class="num">번호</div>
+                                <div id="titleId" class="title">제목</div>
+                                <div id="contentsId" class="contents">글내용</div>
+                                <div id="writerId" class="writer">작성자</div>
+                                <div id="dateId" class="date">날짜</div>
+                                <div id="scoreId" class="score">점수</div>
                             </div>
                             <div>
                                 <div class="num">5</div>
-                                <div class="title">글 제목이 들어갑니다</div>
+                                <div class="title">글 제목</div>
+                                <div class="contents"></div>
                                 <div class="writer">김수현</div>
                                 <div class="date">11.15</div>
                                 <div class="score">5</div>
@@ -197,6 +213,7 @@
     .borde_list>div.top{border-bottom: 2px #999 solid }
     .borde_list>div:last-child{border-bottom: 1px #000000 solid}
 
+    .borde_list>div>div{display: inline-block}
 
 
     #mainSignup {
