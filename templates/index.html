@@ -9,60 +9,14 @@
     <title>Document</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../static/challenge.js"></script>
+<script src="../static/info_share.js"></script>
+<script src="../static/free_board.js"></script>
 <script>
-    function show_post() {
-        alert("작동")
-        $('#borde_wrapper').empty()
-        let num = $('#numId').val()
-        let title = $('#titleId').val()
-        let writer = $('#writerId').val()
-        let contents = $('#contentsId').val()
-        let date = $('#dateId').val()
-
-        $.ajax({
-            type: "POST",
-            url: "/templates/free_board",
-            data: { num_give: num, title_give: title, writer_give: writer, post_give: contents, time_give: date },
-            success: function (response) {
-                alert(response['msg'])
-                window.location.reload()
-            }
-        });
-        $('#borde_wrapper').append()
-    }
-
-    function show_imformation() {
-        alert("작동")
-        $('#borde_wrapper').empty()
-        $('#borde_wrapper').append()
-    }
-    function show_free() {
-        alert("작동")
-        $('#borde_wrapper').empty()
-        $('#borde_wrapper').append()
-    }
     function writing() {
         alert('작동함')
         $('#writeWrapper').css('visibility', 'visible')
     }
-    function upload() {
-        let upNum = $('#userNum').val()
-        let upTitle = $('#userTitle').val()
-        let upContents = $('#userContents').val()
-        // let upId =$('#userId').val()
-        let upTime = $('#userDate').val()
-
-        $.ajax({
-            type: "POST",
-            url: "/guhaejo/view-count",
-            data: { num_give: upNum, title_give: upTitle, post_give: contents, time_give: upTime },
-            success: function (response) {
-                alert(response['msg'])
-            }
-        });
-    }
-
-
     // 오늘의 뉴스
     $(document).ready(function () {
         $('#today_news').empty()
@@ -97,8 +51,8 @@
 
         <nav>
             <div onclick="show_post()">챌린지</div>
-            <div onclick="show_imformation()">정보 공유</div>
-            <div onclick="show_free()">자유 게시판</div>
+            <div onclick="show_information()">정보 공유</div>
+            <div onclick="show_free_board()">자유 게시판</div>
         </nav>
 
         <fieldset>
@@ -108,7 +62,7 @@
                     <p>*첼린지를 클릭해 보세요</p>
                     <div id="borde_wrapper">
                         <div class="borde_title">
-                            <strong>첼린저 게시판</strong>
+                            <strong>첼린지 게시판</strong>
                         </div>
                         <div class="bordeListWrapper">
                             <div class="borde_list">
@@ -156,7 +110,7 @@
                                 <label for=""></label><input type="text" name="" id="userId">
                                 <label for=""></label><input type="text" name="" id="userDate">
                             </div>
-                            <button class="writeBtnPlus" onclick="upload()">등록</button>
+                            <button class="writeBtnPlus" onclick="write_free_board()">등록</button>
                         </div>
                         <button class="writeBtn" onclick="writing()" type="button">글쓰기</button>
                     </div>
