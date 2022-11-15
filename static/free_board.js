@@ -3,6 +3,15 @@ function show_free_board() {
     alert("작동")
     $('#borde_wrapper').empty()
     $('#borde_wrapper').append()
+    $.ajax({
+        type: "GET",
+        url: "/templates/free_board",
+        data: {},
+        success: function (response) {
+            alert('GET연결 성공')
+            console.log(response['comments'])
+        }
+    })
 }
 //자유게시판 글쓴 내용 DB에 저장
 function write_free_board() {

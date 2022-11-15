@@ -3,4 +3,13 @@ function show_challenge() {
     alert("작동")
     $('#borde_wrapper').empty()
     $('#borde_wrapper').append()
+    $.ajax({
+        type: "GET",
+        url: "/templates/challenge",
+        data: {},
+        success: function (response) {
+            alert('GET연결 성공')
+            console.log('comments')
+        }
+    })
 }
