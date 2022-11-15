@@ -4,11 +4,12 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 import certifi
+from bson.json_util import dumps
 
 ca=certifi.where()
 
 client = MongoClient("mongodb+srv://test:test@cluster0.15fhovx.mongodb.net/test", tlsCAFile=ca)
-db = client.dbsparta_plus_week4
+db = client.mansclub
 
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
 # 이 문자열은 서버만 알고있기 때문에, 내 서버에서만 토큰을 인코딩(=만들기)/디코딩(=풀기) 할 수 있습니다.
@@ -28,25 +29,36 @@ import hashlib
 #################################
 ##  HTML을 주는 부분             ##
 #################################
-# 메인 페이지 로드
-@app.route('/')
-def home():
-    return render_template('index.html')
-
 # 자유게시판 포스트
-@app.route('/templates/article', methods=['POST'])
-def article_post():
-    sample_receive = request.form['sample_give']
+@app.route('/templates/free_board', methods=['POST'])
+def free_board_post():
+    writer_receive = request.form.get('writer_give') ##작성자 계정
+    num_receive = request.form.get('num_give')  ##게시글 번호
+    title_receive = request.form.get('title_give') ##제목
+    post_receive = request.form.get('post_give') ## 게시글 내용
+    time_receive = request.form.get('time_give') ## 게시글 작성 시간
+
+    doc = {
+        'writer':writer_receive,
+        'num':num_receive,
+        'title':title_receive,
+        'post':post_receive,
+        'time':time_receive
+    }
+
+    db.free_board.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
 
 # 자유게시판 보여주기
-@app.route('/templates/article',methods=["GET"])
-def article_get():
-    article_list = list(db.article.find({}, {'_id': False}))
-    return jsonify({'comments': article_list})
+@app.route('/templates/free_board',methods=["GET"])
+def free_board_get():
+    free_board_list = list(db.free_board.find({}, {'_id': False}))
+    # return dumps({'trading_posts': trading_list})
+    return jsonify({'comments': free_board_list})
 
 @app.route('/')
 def home():
+    return render_template('index.html')
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
