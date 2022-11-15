@@ -58,9 +58,9 @@
                     let title = row['title']
                     let link = row['link']
 
-                    let temp_html = `<li>
-                                    <strong>${rank} </strong><a href="${link}">${title}</a>
-                                    </li>`                                    
+                    let temp_html = `
+                                    <strong>${rank} </strong><a href="${link}" >${title}</a><br>
+                                    `                                    
                     $('#today_news').append(temp_html)
                 }
             }
@@ -281,7 +281,9 @@
         width: 320px;
         margin-left: 20px;
     }
-
+    #today_news > a:hover {
+        text-decoration: underline;
+    }
     footer {
         padding: 30px 0 0 50px;
         height: 200px;
