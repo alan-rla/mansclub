@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<head>
+  <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
- 
-    <meta charset="UTF-8">
+
+    <meta charset="UTF-8" />
     <title>회원가입</title>
-    
+
     <link rel="stylesheet" href="../static/member.css" />
+  </head>
 
- 
-
-
-
-    
-</head>
-
-<body>
-<div id = "header"></div>
-<div id="contents">
-    <div id="contents__thumbnail"><img src="../static/bg.jpg"></div>
-    <div id="contents__main">
+  <body>
+    <div id="header"></div>
+    <div id="contents">
+      <div id="contents__thumbnail"><img src="../static/bg.jpg" /></div>
+      <div id="contents__main">
+        <div id="contents__main__header"><h1>사나이 클럽 입구</h1></div>
         <form>
-            <input required id="contents__main__userid" type="text" placeholder="ID">
-            <input required id="contents__main__pw" type="password" placeholder="pw">
-            <input required id="contents__main__pwp" type="password" placeholder="password확인">
-            <input required id="contents__main__nickname" type="text"placeholder="닉네임">
-        
-            <input id="contents__main__login" type="submit" value="회원가입">
-            <input id ="contents__main__cancel" type="button" value="취소">
-        
+          <input
+            required
+            id="contents__main__userid"
+            type="text"
+            placeholder="ID"
+          />
+          <input
+            required
+            id="contents__main__pw"
+            type="password"
+            placeholder="Password"
+          />
+          <input
+            required
+            id="contents__main__pwp"
+            type="password"
+            placeholder="Password 확인"
+          />
+          <input
+            required
+            id="contents__main__nickname"
+            type="text"
+            placeholder="닉네임"
+          />
+          <input id="contents__main__login" type="submit" value="회원가입" />
+          <input id="contents__main__cancel" type="button" value="취소" />
         </form>
+      </div>
     </div>
-
-</div>
-
-</body>
+  </body>
+</html>

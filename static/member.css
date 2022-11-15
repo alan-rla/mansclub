@@ -1,5 +1,5 @@
 @import "reset.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
 html{
   height: 100%;
   width: 100%;
@@ -14,22 +14,18 @@ body{
 #header{
   width:100%;
   height:10%;
-
-  background-color: blanchedalmond;
+  background-color: aqua;
 }
 
 #contents{
   display: flex;
   width:100%;
   height:80%;
-
-  
 }
 
 #contents__thumbnail,#contents__main{
   width:50%;
   height:100%;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,6 +35,23 @@ body{
   height: 80%;
   border-radius: 10%;
 }
+#contents__main{
+  flex-direction: column;
+  
+}
+#contents__main__header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 15%;
+  margin-top:50px;
+}
+#contents__main__header > h1{
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size:50px;
+}
+
 #contents__main > form{
   width: 100%;
   height: 100%;
@@ -47,11 +60,49 @@ body{
   align-items: center;
   justify-content: center;
 }
-#contents__main > form > input{
-  width: 30%;
-  height: 5%;
+#contents__main > form > input:first-child,
+#contents__main > form > input:nth-child(2),
+#contents__main > form > input:nth-child(3),
+#contents__main > form > input:nth-child(4){
+  width: 40%;
+  height: 8%;
   margin-top: 15px;
+  border: 4px solid rgba(0,0,0,0.5);
+  border-radius: 10px;
+  transition: 0.5s all ease-in-out;
+  font-size: 20px;
+  padding: 0 10px;
+}
+#contents__main > form > input:first-child:focus,
+#contents__main > form > input:nth-child(2):focus,
+#contents__main > form > input:nth-child(3):focus,
+#contents__main > form > input:nth-child(4):focus
+{
+  border: 4px solid black;
 }
 #contents__main__nickname{
   margin-bottom: 40px;
+}
+#contents__main > form > input:nth-child(5),
+#contents__main > form > input:last-child
+{
+  width: 30%;
+  height: 8%;
+  margin-top: 15px;
+  border: 4px solid rgba(0,0,0,0.5);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 700;
+}
+#contents__main > form > input:nth-child(5):hover,
+#contents__main > form > input:last-child:hover
+{
+  cursor: pointer;
+}
+#contents__main > form > input:nth-child(5):active,
+#contents__main > form > input:last-child:active
+{
+  
+  background-color: black;
+  color:white;
 }
