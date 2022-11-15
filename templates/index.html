@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css" type="text/css">
     <title>Document</title>
+
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../static/challenge.js"></script>
 <script src="../static/info_share.js"></script>
 <script src="../static/free_board.js"></script>
+
 <script>
     function writing() {
-        alert('작동함')
         $('#writeWrapper').css('visibility', 'visible')
     }
     // 오늘의 뉴스
@@ -48,13 +49,11 @@
 
     <div id="wrapper">
         <h1>사나이 클럽</h1>
-
         <nav>
-            <div onclick="show_post()">챌린지</div>
-            <div onclick="show_information()">정보 공유</div>
+            <div onclick="show_challenge()">챌린지</div>
+            <div onclick="show_info_share()">정보 공유</div>
             <div onclick="show_free_board()">자유 게시판</div>
         </nav>
-
         <fieldset>
 
             <main>
@@ -97,20 +96,14 @@
                         </div>
                         <div id="writeWrapper">
                             <div class="writeTable">
-                                <div>번호</div>
                                 <div>제목</div>
                                 <div>내용</div>
-                                <div>작성자</div>
-                                <div>날짜</div>
                             </div>
-                            <div>
-                                <label for=""></label><input type="text" id="userNum">
-                                <label for=""></label><input type="text" name="" id="userTitle">
-                                <label for=""></label><input type="text" name="" id="userContents">
-                                <label for=""></label><input type="text" name="" id="userId">
-                                <label for=""></label><input type="text" name="" id="userDate">
+                            <div class="top">
+                                <label for=""></label><input type="text" id="userTitle">
+                                <label for=""></label><input type="text" id="userContents">
+                                <button class="writeBtnPlus" onclick="write_free_board()">등록</button>
                             </div>
-                            <button class="writeBtnPlus" onclick="write_free_board()">등록</button>
                         </div>
                         <button class="writeBtn" onclick="writing()" type="button">글쓰기</button>
                     </div>
