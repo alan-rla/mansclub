@@ -5,11 +5,20 @@ app = Flask(__name__)
 from pymongo import MongoClient
 import certifi
 from bson.json_util import dumps
+from bs4 import BeautifulSoup
+import requests
 
 ca=certifi.where()
 
+# 크롤링
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 client = MongoClient('mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority')
+
 db = client.mansclub
+
+# 크롤링
+data = requests.get('https://sports.daum.net/',headers=headers)
+soup = BeautifulSoup(data.text, 'html.parser')
 
 # 메인페이지
 @app.route('/')
@@ -42,6 +51,27 @@ def free_board_get():
     free_board_list = list(db.free_board.find({}, {'_id': False}))
     # return dumps({'trading_posts': trading_list})
     return jsonify({'comments': free_board_list})
+
+# 뉴스 크롤링
+@app.route('/news', methods=['GET'])
+def news_get():
+    news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
+    news_list = []
+    for new in news:
+        rank = new.select_one('em').text
+        title = new.select_one('strong > a').text
+        link = new.select_one('strong > a').attrs['href']
+
+        if len(title) > 25:
+            title = title[0:20] + '...'
+
+        doc = {
+            'rank':rank, 
+            'title':title, 
+            'link':link
+            }
+        news_list.append(doc)
+    return jsonify({'news':news_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
