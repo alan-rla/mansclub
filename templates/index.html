@@ -42,11 +42,11 @@
     }
 
     // 오늘의 뉴스
-    $(document).ready(function () {        
-        // $('#today_news').remove() 
+    $(document).ready(function () {
+        $('#today_news').empty()             
         show_news();
     });
-    function show_news() {               
+    function show_news() {                       
         $.ajax({
             type: 'GET',
             url: '/news',

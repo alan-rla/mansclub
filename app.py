@@ -53,10 +53,10 @@ def free_board_get():
     return jsonify({'comments': free_board_list})
 
 # 뉴스 크롤링
-news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
-news_list = []
 @app.route('/news', methods=['GET'])
 def news_get():
+    news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
+    news_list = []
     for new in news:
         rank = new.select_one('em').text
         title = new.select_one('strong > a').text
