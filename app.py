@@ -32,22 +32,18 @@ def home():
 # 챌린지 포스트
 @app.route('/templates/challenge', methods=['POST'])
 def challenge_post():
-    # writer_receive = request.form['writer_give'] ##작성자 계정
-    title_receive = request.form['title_give'] ##제목
-    post_receive = request.form['post_give'] ## 게시글 내용
-    time_receive = request.form['time_give'] ## 게시글 작성 시간
-    num = len(list(db.free_board.find({},{'_id':False}))) ## 게시글 번호
-    score = request.form['score_give'] ## 챌린지 점수
-
+    num_receive = request.form['num_give'] ##게시글 번호
+    token_receive = request.form['token_give'] ##작성자 계정
+    url_receive = request.form['url_give'] ## 게시글 내용
+    score_receive = request.form['score_give'] ## 챌린지 점수
+    count = 0
     doc = {
-        # 'writer':writer_receive,
-        'num':num,
-        'title':title_receive,
-        'post':post_receive,
-        'time':time_receive,
-        'score':score
+        'num':num_receive,
+        'writer':token_receive,
+        'url':url_receive,
+        'score':score_receive,
+        'count':count
     }
-
     db.challenge.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
 
