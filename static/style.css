@@ -65,17 +65,17 @@
       color: red;
     }
 
-    .borde_title {
-      text-align: center;
-      height: 5%;
-      font-size: 24px;
-    }
-
     #borde_wrapper {
       width: 90%;
       height: 94%;
       margin-left: 30px;
       border: black solid 1px;
+    }
+
+    .borde_title {
+      text-align: center;
+      height: 5%;
+      font-size: 24px;
     }
 
     .borde_list {

@@ -26,21 +26,21 @@ function show_info_share() {
                 let number = rows[i]
                 let title = rows[i]
                 let contents = rows[i]
+                let writer = row[i]
                 let date = rows[i]
-                let tempFreeShare = `<div class="borde_list">
+                let tempImfoShare = `<div class="borde_list">
                                 <div class="top">
-                                    <textarea id="titleId" class="title">제목</textarea>
-                                    <textarea id="numId" class="num">번호</textarea>
-                                    <textarea id="contentsId" class="contents">글내용</textarea>
-                                    <textarea id="writerId" class="writer">작성자</textarea>
-                                    <textarea id="dateId" class="date">날짜</textarea>
-                                    <textarea id="scoreId" class="score">점수</textarea>
+                                    <textarea id="numId" class="num">${number}</textarea>
+                                    <textarea id="titleId" class="title">${title}</textarea>
+                                    <textarea id="contentsId" class="contents">${contents}</textarea>
+                                    <textarea id="writerId" class="writer">${writer}</textarea>
+                                    <textarea id="dateId" class="date">${date}</textarea>
                                 </div>`
+                $('#borde_wrapper').append(tempImfoShare)
             }
         }
     })
     $('#borde_wrapper').append(temphtml)
-    $('#borde_wrapper').append()
 }
 //공유게시판 글쓴 내용 DB에 전송
 function write_info_share() {
