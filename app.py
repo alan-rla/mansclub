@@ -9,7 +9,7 @@ from pymongo import MongoClient
 from bson.json_util import dumps
 from bs4 import BeautifulSoup
 import requests
-
+import uuid
 app = Flask(__name__)
 # application = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -31,8 +31,7 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/
 client = MongoClient('mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority')
 # 크롤링
 data = requests.get('https://sports.daum.net/',headers=headers)
-soup = BeautifulSoup(data.text, 'html.parser'
-
+soup = BeautifulSoup(data.text, 'html.parser')
 
 
 
@@ -49,7 +48,6 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"id": payload['id']})
-        print(user_info)
         return render_template('index.html', nickname=user_info["nick"])
 
     except jwt.ExpiredSignatureError:
@@ -186,8 +184,6 @@ def api_valid():
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload)
-
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
@@ -201,14 +197,16 @@ def api_valid():
 # 챌린지 포스트
 @app.route('/templates/challenge', methods=['POST'])
 def challenge_post():
-    num_receive = request.form['num_give'] ##게시글 번호
+    num_receive = uuid.uuid4().hex ##게시글 번호
     token_receive = request.form['token_give'] ##작성자 계정
     url_receive = request.form['url_give'] ## 게시글 내용
     score_receive = request.form['score_give'] ## 챌린지 점수
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
     count = 0
+
     doc = {
         'num':num_receive,
-        'writer':token_receive,
+        'writer':payload['id'],
         'url':url_receive,
         'score':score_receive,
         'count':count
