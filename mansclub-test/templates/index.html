@@ -13,7 +13,19 @@
   <!-- <script src="../static/info_share.js"></script>
   <script src="../static/free_board.js"></script> -->
   <script src="../static/today_news.js"></script>
-
+  <script>
+    $(document).ready(function () {
+      $('#mainSignup').empty()
+        if ($.cookie("mytoken")) {
+          let temp_html = `<button onclick="location.href = '/mypage'">마이페이지</button>`
+          $('#mainSignup').append(temp_html)
+        } else {
+          let temp_html = `<button onclick="location.href = '/login'">로그인</button><br/>
+                          <button onclick="location.href = '/member'">회원가입</button>`
+          $('#mainSignup').append(temp_html)
+        }        
+    });
+  </script>
   <body>
     <div id="wrapper">
       <h1>사나이 클럽</h1>
@@ -50,9 +62,6 @@
         <aside>
           <div>
             <div id="mainSignup">
-              <button>로그인</button>
-              <br />
-              <button>회원가입</button>
             </div>
           </div>
           <content>
