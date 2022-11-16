@@ -3,11 +3,10 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
     <meta charset="UTF-8" />
     <title>회원가입</title>
-
     <link rel="stylesheet" href="../static/member.css" />
+    <script src="../static/member.js"></script>
   </head>
 
   <body>
@@ -41,7 +40,12 @@
             type="text"
             placeholder="닉네임"
           />
-          <input id="contents__main__login" type="submit" value="회원가입" />
+          <input
+            id="contents__main__login"
+            type="submit"
+            value="회원가입"
+            onclick="join_member()"
+          />
           <input id="contents__main__cancel" type="button" value="취소" />
         </form>
       </div>
