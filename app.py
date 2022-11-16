@@ -64,7 +64,7 @@ def leave():
         return redirect(url_for("lgoin", msg="로그인 정보가 존재하지 않습니다."))
 
 @app.route('/mypage')
-def leave():
+def mypage():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -128,7 +128,7 @@ def api_login():
 
 # [비밀번호 변경 API]
 @app.route('/api/pwchange', methods=['POST'])
-def api_leave():
+def api_pwchange():
         token_receive = request.form['token_give']
         pw_receive = request.form['pwconfirm_give']
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
