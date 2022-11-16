@@ -37,7 +37,7 @@ body{
 }
 
 
-#contents > form{
+#contents > div:nth-child(2){
   width: 50%;
   height: 100%;
   display: flex;

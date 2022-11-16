@@ -13,7 +13,7 @@
     <div id="header"></div>
     <div id="contents">
       <div id="contents__header"><h1>슈퍼 겁쟁이들의 쉼터 입구</h1></div>
-      <form>
+      <div>
         <div id="contents__thumbnail"><img src="../static/bg3.jpg" /></div>
         <div id="balloon">
           <h1>탈퇴....하시겠습니까?</h1>
@@ -26,8 +26,13 @@
           placeholder="PASSWORD 확인"
           required
         />
-        <input id="contents__main__withdraw" type="submit" value="탈퇴하기" />
-      </form>
+        <input
+          id="contents__main__withdraw"
+          type="submit"
+          value="탈퇴하기"
+          onclick="leave()"
+        />
+      </div>
     </div>
   </body>
 </html>

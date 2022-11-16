@@ -52,7 +52,7 @@ body{
   font-size:50px;
 }
 
-#contents__main > form{
+#contents__main > div:nth-child(2){
   width: 100%;
   height: 100%;
   flex-direction: column;
@@ -60,10 +60,10 @@ body{
   align-items: center;
   justify-content: center;
 }
-#contents__main > form > input:first-child,
-#contents__main > form > input:nth-child(2),
-#contents__main > form > input:nth-child(3),
-#contents__main > form > input:nth-child(4){
+#contents__main > div:nth-child(2) > input:first-child,
+#contents__main > div:nth-child(2) > input:nth-child(2),
+#contents__main > div:nth-child(2) > input:nth-child(3),
+#contents__main > div:nth-child(2) > input:nth-child(4){
   width: 40%;
   height: 8%;
   margin-top: 15px;
@@ -73,18 +73,18 @@ body{
   font-size: 20px;
   padding: 0 10px;
 }
-#contents__main > form > input:first-child:focus,
-#contents__main > form > input:nth-child(2):focus,
-#contents__main > form > input:nth-child(3):focus,
-#contents__main > form > input:nth-child(4):focus
+#contents__main > div:nth-child(2) > input:first-child:focus,
+#contents__main > div:nth-child(2) > input:nth-child(2):focus,
+#contents__main > div:nth-child(2) > input:nth-child(3):focus,
+#contents__main > div:nth-child(2) > input:nth-child(4):focus
 {
   border: 4px solid black;
 }
 #contents__main__nickname{
   margin-bottom: 40px;
 }
-#contents__main > form > input:nth-child(5),
-#contents__main > form > input:last-child
+#contents__main > div:nth-child(2) > input:nth-child(5),
+#contents__main > div:nth-child(2) > input:last-child
 {
   width: 30%;
   height: 8%;
@@ -94,13 +94,13 @@ body{
   font-size: 20px;
   font-weight: 700;
 }
-#contents__main > form > input:nth-child(5):hover,
-#contents__main > form > input:last-child:hover
+#contents__main > div:nth-child(2) > input:nth-child(5):hover,
+#contents__main > div:nth-child(2) > input:last-child:hover
 {
   cursor: pointer;
 }
-#contents__main > form > input:nth-child(5):active,
-#contents__main > form > input:last-child:active
+#contents__main > div:nth-child(2) > input:nth-child(5):active,
+#contents__main > div:nth-child(2) > input:last-child:active
 {
   
   background-color: black;
