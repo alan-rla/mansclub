@@ -14,7 +14,7 @@ function join_member() {
     }else{
         $.ajax({
         type: 'POST',
-        url: '/member/join',
+        url: '/api/join',
         data: { userid_give:userId,
                 userpw_give:userPw,
                 nickname_give:nickname},

@@ -13,9 +13,24 @@
     <div id="contents">
       <div id="contents__header"><h1>마이 페이지</h1></div>
       <div id="contents__main">
-        <input id="contents__main__paC" type="button" value="비밀번호 변경" />
-        <input id="contents__main__profC" type="button" value="프로필 변경" />
-        <input id="contents__main__withdraw" type="button" value="탈퇴하기" />
+        <input
+          id="contents__main__paC"
+          type="button"
+          value="비밀번호 변경"
+          onclick="show_pw_change()"
+        />
+        <input
+          id="contents__main__profC"
+          type="button"
+          value="닉네임 변경"
+          onclick="show_nick_change()"
+        />
+        <input
+          id="contents__main__withdraw"
+          type="button"
+          value="탈퇴하기"
+          onclick="go_leave()"
+        />
       </div>
     </div>
   </body>
