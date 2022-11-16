@@ -1,0 +1,288 @@
+    * {
+      text-decoration: none;
+      list-style: none;
+      border-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    h1 {
+      padding-top: 50px;
+      margin-left: 50px;
+      font-size: 60px;
+      border: black 1px solid;
+      border-radius: 30px;
+      width: 350px;
+    }
+
+    #wrapper {
+      height: 100%;
+      background-color: plum;
+    }
+
+    nav {
+      display: flex;
+      margin: 50px 0 50px 0;
+      font-size: 30px;
+    }
+
+    nav>div {
+      margin: 0 30px 0 38px;
+      border: 1px black solid;
+      border-radius: 5px;
+      padding: 3px 10px 3px 10px;
+    }
+
+    nav>div:hover {
+      background-color: cornflowerblue;
+      color: #fff;
+    }
+
+    fieldset {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      height: 1000px;
+      box-sizing: content-box;
+    }
+
+    #mainForm {
+      background-color: gray;
+      height: 1000px;
+      box-sizing: content-box;
+    }
+
+    #mainForm>p {
+      margin: 0 0 10px 20px;
+      color: red;
+    }
+
+    #borde_wrapper {
+      width: 90%;
+      height: 94%;
+      margin-left: 30px;
+      border: black solid 1px;
+    }
+
+    .borde_title {
+      text-align: center;
+      height: 5%;
+      font-size: 24px;
+    }
+
+    .borde_list {
+      width: 100%;
+      height: 50px;
+      font-size: 30px;
+      margin-bottom: 50px;
+      text-align: center;
+      border: #000000 solid;
+    }
+
+    .userdateWrapper {
+      width: 100%;
+      height: 50px;
+      border: #000 2px solid;
+      padding: 20px 0 20px 0;
+    }
+
+    .userdateWrapper>input {
+      width: 50%;
+      height: inherit;
+      padding-left: 20px;
+      margin-left: 20px;
+    }
+
+    .userdateWrapper>label {
+      font-size: 10px;
+      height: inherit;
+      margin-left: 20px;
+    }
+
+    .userdateWrapper>button {
+      float: right;
+      width: 15%;
+      height: inherit;
+      margin-right: 20px;
+    }
+
+    #chall_posts {
+      width: 100%;
+      height: 100px;
+      margin-top: 50px;
+      border: #000 2px solid;
+      padding: 20px 0 20px 0;
+    }
+
+    #chall_posts>input:nth-of-type(1) {
+      height: inherit;
+      width: 10%;
+      margin: 0 20px 0 20px;
+    }
+
+    #chall_posts>input:nth-of-type(2) {
+      height: inherit;
+      width: 50%;
+    }
+
+
+    #chall_posts>button {
+      width: 15%;
+      float: right;
+      height: inherit;
+      margin-right: 20px;
+    }
+
+    #chall_posts>button:hover {
+      color: #fff;
+      background-color: blue;
+    }
+
+
+
+    /* .borde_list>div {
+      border-bottom: 1px #ddd solid
+    }
+
+    .borde_list>div.top {
+      border-bottom: 2px #999 solid
+    }
+
+    .borde_list>div:last-child {
+      border-bottom: 1px #000000 solid
+    }
+
+    .borde_list>div>div {
+      display: inline-block
+    } */
+
+    .top textarea {
+      width: 10%;
+    }
+
+    .top>textarea:nth-of-type(3) {
+      width: 40%;
+    }
+
+    .top>input {
+      height: 30px;
+    }
+
+    .top>input:nth-of-type(1) {
+      width: 20%;
+      margin: 0 18px 0 20px;
+    }
+
+    .top>input:nth-of-type(2) {
+      width: 57%;
+      margin-right: 18px;
+    }
+
+    .wr
+    /* #writeWrapper {
+      visibility: hidden;
+    } */
+
+    /* .writeTable>div {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .writeTable>div:nth-of-type(1) {
+      width: 20%;
+      margin: 0 20px 0 20px;
+    }
+
+    .writeTable>div:nth-of-type(2) {
+      width: 60%;
+      margin-right: 8px;
+    } */
+
+    .writeBtn {
+      width: 15%;
+      height: 5%;
+      margin-top: 20px;
+      float: right;
+    }
+
+    .writeBtn:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .writeBtnPlus {
+      width: 15%;
+      height: 30px;
+      float: right;
+    }
+
+    .writeBtnPlus:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+
+
+    #mainSignup {
+      height: 200px;
+
+    }
+
+    #mainSignup>button {
+      width: 260px;
+      height: 80px;
+      margin: 13px 0 0 20px;
+      background-color: limegreen;
+      color: ghostwhite;
+      font-size: 24px;
+      border-radius: 5px
+    }
+
+    #mainSignup>button:hover {
+      background-color: darkolivegreen
+    }
+
+    content {
+      height: 800px;
+      display: grid;
+
+
+    }
+
+    content>h2 {
+      margin: 30px 0 0 30px;
+    }
+
+    #NewsId {
+      border: dimgray solid;
+      height: 680px;
+      width: 320px;
+      margin-left: 20px;
+    }
+
+    #today_news>a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 30px 0 0 50px;
+      height: 200px;
+      margin: auto;
+      /*position: relative;*/
+      /*transform: translateY(-100%);*/
+      background-color: #000;
+      color: #fff;
+    }
+
+    footer>p {
+      margin-top: 10px;
+    }

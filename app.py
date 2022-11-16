@@ -6,6 +6,9 @@ import jwt
 from flask import (Flask, jsonify, redirect, render_template, request, session,
                    url_for)
 from pymongo import MongoClient
+from bson.json_util import dumps
+from bs4 import BeautifulSoup
+import requests
 
 app = Flask(__name__)
 # application = Flask(__name__, static_folder='static', template_folder='templates')
@@ -22,9 +25,22 @@ SECRET_KEY = 'SPARTA'
 # 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니다.
 # 회원가입 시엔, 비밀번호를 암호화하여 DB에 저장해두는 게 좋습니다.
 # 그렇지 않으면, 개발자(=나)가 회원들의 비밀번호를 볼 수 있으니까요.^^;
+
+# 크롤링
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+client = MongoClient('mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority')
+# 크롤링
+data = requests.get('https://sports.daum.net/',headers=headers)
+soup = BeautifulSoup(data.text, 'html.parser'
+
+
+
+
 #################################
 ##  HTML을 주는 부분             ##
 #################################
+
+
 
 
 @app.route('/')
@@ -181,6 +197,53 @@ def api_valid():
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
+# 챌린지 포스트
+@app.route('/templates/challenge', methods=['POST'])
+def challenge_post():
+    num_receive = request.form['num_give'] ##게시글 번호
+    token_receive = request.form['token_give'] ##작성자 계정
+    url_receive = request.form['url_give'] ## 게시글 내용
+    score_receive = request.form['score_give'] ## 챌린지 점수
+    count = 0
+    doc = {
+        'num':num_receive,
+        'writer':token_receive,
+        'url':url_receive,
+        'score':score_receive,
+        'count':count
+    }
+    db.challenge.insert_one(doc)
+    return jsonify({'msg':'저장 완료!'})
+
+# 챌린지 보여주기
+@app.route('/templates/challenge',methods=["GET"])
+def challenge_get():
+    challenge_list = list(db.challenge.find({}, {'_id': False}))
+    # return dumps({'trading_posts': trading_list})
+    return jsonify({'comments': challenge_list})
+
+
+# 뉴스 크롤링
+@app.route('/news', methods=['GET'])
+def news_get():
+    news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
+    news_list = []
+    for new in news:
+        rank = new.select_one('em').text
+        title = new.select_one('strong > a').text
+        link = new.select_one('strong > a').attrs['href']
+
+        if len(title) > 25:
+            title = title[0:20] + '...'
+
+        doc = {
+            'rank':rank, 
+            'title':title, 
+            'link':link
+            }
+        news_list.append(doc)
+    return jsonify({'news':news_list})
 
 
 if __name__ == '__main__':
