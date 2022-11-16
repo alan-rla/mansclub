@@ -15,9 +15,21 @@
 <script src="../static/free_board.js"></script>
 
 <script>
-    function writing() {
-        $('#writeWrapper').css('visibility', 'visible')
+    function update() {
+        let userdata = $('#userdata').val()
+        $.ajax({
+            type: "POST",
+            url: "/templates/free_board",
+            data: { user_give: userdata },
+            success: function (response) {
+                alert(response['msg'])
+            }
+        });
+
     }
+    // function writing() {
+    //     $('#writeWrapper').css('visibility', 'visible')
+    // }
     // 오늘의 뉴스
     $(document).ready(function () {
         $('#today_news').empty()
@@ -65,43 +77,40 @@
                         </div>
                         <div class="bordeListWrapper">
                             <div class="borde_list">
-                                <div class="top">
+                                <!-- <div class="top">
                                     <textarea id="titleId" class="title">제목</textarea>
                                     <textarea id="numId" class="num">번호</textarea>
                                     <textarea id="contentsId" class="contents">글내용</textarea>
                                     <textarea id="writerId" class="writer">작성자</textarea>
                                     <textarea id="dateId" class="date">날짜</textarea>
                                     <textarea id="scoreId" class="score">점수</textarea>
-                                </div>
-                                <div class="top">
+                                </div> -->
+                                <!-- <div class="top">
                                     <textarea class="num">5</textarea>
                                     <textarea class="title">글 제목</textarea>
                                     <textarea class="contents"></textarea>
                                     <textarea class="writer">김수현</textarea>
                                     <textarea class="date">11.15</textarea>
                                     <textarea class="score">5</textarea>
-                                </div>
+                                </div> -->
+                                금주의 첼린지 : 팔굽혀 펴기 100개
                             </div>
-                            <div borde_page>
-
+                            <div><label for=""></label>텍스트 입력란<input type="text" id="userdata"><button
+                                    onclick="update()">글쓰기</button>
                             </div>
-                            <div btn_wrapper>
-
-                            </div>
-
                         </div>
                         <div id="writeWrapper">
-                            <div class="writeTable">
+                            <!-- <div class="writeTable">
                                 <div>제목</div>
                                 <div>내용</div>
-                            </div>
-                            <div class="top" id="test01">
+                            </div> -->
+                            <!-- <div class="top" id="test01">
                                 <label for=""></label><input type="text" id="userTitle">
                                 <label for=""></label><input type="text" id="userContents">
                                 <button class="writeBtnPlus" onclick="write_free_board()">등록</button>
-                            </div>
+                            </div> -->
                         </div>
-                        <button class="writeBtn" onclick="writing()" type="button">글쓰기</button>
+                        <!-- <button class="writeBtn" onclick="writing()" type="button">글쓰기</button> -->
                     </div>
                 </form>
             </main>

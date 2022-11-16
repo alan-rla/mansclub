@@ -27,6 +27,15 @@ function show_free_board() {
                 let title = rows[i]
                 let contents = rows[i]
                 let date = rows[i]
+                let tempFreeShare = `<div class="borde_list">
+                                <div class="top">
+                                    <textarea id="titleId" class="title">${number}</textarea>
+                                    <textarea id="numId" class="num">${title}</textarea>
+                                    <textarea id="contentsId" class="contents">${contents}</textarea>
+                                    <textarea id="writerId" class="writer">${date}</textarea>
+                                    <textarea id="dateId" class="date">${date}</textarea>
+                                </div>`
+                $('#borde_wrapper').append(tempFreeShare)
 
             }
         }
