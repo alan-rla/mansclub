@@ -46,6 +46,9 @@
               }
           })
       }
+      function go_register(){
+        window.location.href="/register"
+      }
     </script>
   </head>
   <body>
@@ -82,15 +85,18 @@
             </div>
           </form>
           <div id="contents__main__btn">
-            <button id="contents__main__btn__login" onclick="login()">
-              <h1>로그인</h1>
-            </button>
-            <button
+            <input
+              id="contents__main__btn__login"
+              type="submit"
+              value="로그인"
+              onclick="login()"
+            />
+            <input
               id="contents__main__btn__register"
-              onclick="location.href='./register'"
-            >
-              <h1>회원가입</h1>
-            </button>
+              type="button"
+              value="회원가입"
+              onclick="go_register()"
+            />
           </div>
         </div>
       </div>

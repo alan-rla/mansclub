@@ -62,7 +62,6 @@ body{
   margin: 30px;
   width:50%; 
   height:30%;
-  background:aqua; 
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -70,23 +69,13 @@ body{
   text-align: center;
   flex-direction: column;
  }
- #balloon:after { 
-  border-top:0px solid transparent; 
-  border-left: 10px solid transparent; 
-  border-right: 10px solid transparent; 
-  border-bottom: 10px solid aqua; 
-  content:""; 
-  position:absolute;
-  top:-10px;
-  left:200px;  
- }
 #balloon > h1{
-   font-size:20px;
+   font-size:30px;
    margin-bottom: 10px;
    font-family: 'Jua', sans-serif;
 }
 #balloon > h2{
-  font-size:13px;
+  font-size:20px;
   font-weight: 700;
   color: rgba(0,0,0,0.5);
 }

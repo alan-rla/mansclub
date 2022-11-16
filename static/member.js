@@ -29,4 +29,6 @@ function join_member() {
     });
     }}
 
-    
+function go_home(){
+window.location.href="/"
+}
