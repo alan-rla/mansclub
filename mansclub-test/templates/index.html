@@ -1,80 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style.css" type="text/css" />
-    <title>Document</title>
-  </head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  <script src="../static/challenge.js"></script>
-  <!-- <script src="../static/info_share.js"></script>
-  <script src="../static/free_board.js"></script> -->
-  <script src="../static/today_news.js"></script>
 
-  <body>
-    <div id="wrapper">
-      <h1>사나이 클럽</h1>
-      <nav>
-        <div onclick="show_challenge()">챌린지</div>
-        <div onclick="show_info_share()">정보 공유</div>
-        <div onclick="show_free_board()">자유 게시판</div>
-      </nav>
-      <fieldset>
-        <main>
-          <form action="" id="mainForm" onsubmit="return false; ">
-            <div id="borde_wrapper">
-              <div class="borde_title">
-                <strong>첼린지 게시판</strong>
-              </div>
-              <div class="bordeListWrapper">
-                <div class="borde_list">
-                  금주의 첼린지 : 팔굽혀 펴기 100개
-                </div>
-                <div class="userdateWrapper">
-                  <label for="">텍스트 입력란</label
-                  ><input
-                    placeholder="첼린지 인증 영상을 올려주세요"
-                    type="text"
-                    id="linkdata"
-                  /><button onclick="post_challenge()">글쓰기</button>
-                </div>
-              </div>
-                <div id="chall_box">
-                </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/style.css" type="text/css" />
+  <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="../static/challenge.js"></script>
+<!-- <script src="../static/info_share.js"></script>
+  <script src="../static/free_board.js"></script> -->
+<script src="../static/today_news.js"></script>
+
+<body>
+  <div id="wrapper">
+    <h1>사나이 클럽</h1>
+    <nav>
+      <div onclick="show_challenge()">챌린지</div>
+      <div onclick="show_info_share()">정보 공유</div>
+      <div onclick="show_free_board()">자유 게시판</div>
+    </nav>
+    <fieldset>
+      <main>
+        <form action="" id="mainForm" onsubmit="return false; ">
+          <div id="borde_wrapper">
+            <div class="borde_title">
+              <strong>첼린지 게시판</strong>
             </div>
-          </form>
-        </main>
-        <aside>
-          <div>
-            <div id="mainSignup">
-              <button>로그인</button>
-              <br />
-              <button>회원가입</button>
+            <div class="bordeListWrapper">
+              <div class="borde_list">
+                금주의 첼린지 : 팔굽혀 펴기 100개
+              </div>
+              <div class="userdateWrapper">
+                <label for=""></label><input type="text" placeholder="아이디">
+                <label></label><input placeholder="첼린지 인증 영상을 올려주세요" type="text" id="linkdata" /><button
+                  onclick="post_challenge()">글쓰기</button>
+              </div>
+            </div>
+            <div id="chall_box">
             </div>
           </div>
-          <content>
-            <h2>News</h2>
-            <form action="">
-              <div id="NewsId">
-                <ul id="today_news"></ul>
-              </div>
-            </form>
-          </content>
-        </aside>
-      </fieldset>
-    </div>
+        </form>
+      </main>
+      <aside>
+        <div>
+          <div id="mainSignup">
+            <button>로그인</button>
+            <br />
+            <button>회원가입</button>
+          </div>
+        </div>
+        <content>
+          <h2>News</h2>
+          <form action="">
+            <div id="NewsId">
+              <ul id="today_news"></ul>
+            </div>
+          </form>
+        </content>
+      </aside>
+    </fieldset>
+  </div>
 
-    <footer>
-      <h2>항해 99 2조</h2>
-      <p>이민용(팀장)</p>
-      <p>김수현</p>
-      <p>권인후</p>
-      <p>김수영</p>
-      //있던 내용 사라지기 // ${'#border_title'}.append((${'#test'})) //새
-      게시판 내용 들고오기=
-    </footer>
-  </body>
+  <footer>
+    <h2>항해 99 2조</h2>
+    <p>이민용(팀장)</p>
+    <p>김수현</p>
+    <p>권인후</p>
+    <p>김수영</p>
+
+  </footer>
+</body>
+
 </html>
