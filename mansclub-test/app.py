@@ -209,7 +209,8 @@ def challenge_post():
         'writer':payload['id'],
         'url':url_receive,
         'score':score_receive,
-        'count':count
+        'count':count,
+        'confirmer':[payload['id']]
     }
     db.challenge.insert_one(doc)
     return jsonify({'msg':'저장 완료!'})
@@ -221,7 +222,7 @@ def challenge_get():
     # return dumps({'trading_posts': trading_list})
     return jsonify({'challenges': challenge_list})
 
-#챌린지 인증
+# 챌린지 인증
 @app.route('/api/challenge',methods=["POST"])
 def chall_confirm ():
     token_receive = request.form['token_give'] ##인증자 계정
@@ -232,18 +233,30 @@ def chall_confirm ():
     user_info = db.user.find_one({"id": payload['id']})
     user_point = user_info['point']
 
-    ## 게시글 카운트 찾기
-    post = db.challenge.find_one({"num": num_receive})
-    count = int(post['count'])
+    ## 게시글 정보 찾기
+    post = db.challenge.find_one({"num": num_receive}) ## HEX값으로 찾은 게시글 object
+    count = int(post['count']) ## 게시글의 count 숫자
 
-    if count < 3:
+    ## 게시자이거나 이미 인증했는지, 점수가 부족한지 확인
+    if user_info['id'] in post['confirmer'] or user_point < 100:
+        return jsonify({'confirmed': True})
+
+    ## 인증 횟수 추가하기
+    elif count < 3:
         db.challenge.update_one({'num':num_receive},{'$set':{'count':count+1}})
+        db.challenge.update_one({'num' : num_receive}, {'$push': {'confirmer':payload['id']}})
+        if count == 2:
+            ## 챌린지 인증 완료되면 게시자 점수 찾고 덧셈하기
+            writer = post['writer'] ## 게시자의 id
+            point = int(db.user.find_one({"id": writer})['point']) ## 게시자의 현재 점수
+            score = int(post['score']) ## 게시글의 점수
+            db.user.update_one({'id':writer},{'$set':{'point':point+score}})
     
     doc = {
         'point':user_point,
         'count':count
     }
-    
+
     return jsonify({'doc': doc})
 
 # 뉴스 크롤링
