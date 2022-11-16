@@ -1,0 +1,121 @@
+@import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap');
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  height: 100%;
+  width: 100%;
+  min-height: 912px;
+  min-width: 1920px;
+}
+
+#header{
+  width:100%;
+  height:10%;
+  background-color: aqua;
+}
+
+#contents{
+  width:100%;
+  height:80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#contents__header{
+  margin:40px 0 ;
+}
+
+#contents__header >h1{
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size:50px;
+}
+
+
+#contents > div:nth-child(2){
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  flex-direction: column;
+}
+
+#contents__thumbnail{
+  width:60%;
+  height:60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#balloon {  
+  position:relative; 
+  margin: 30px;
+  width:50%; 
+  height:30%;
+  background:aqua; 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+ }
+ #balloon:after { 
+  border-top:0px solid transparent; 
+  border-left: 10px solid transparent; 
+  border-right: 10px solid transparent; 
+  border-bottom: 10px solid aqua; 
+  content:""; 
+  position:absolute;
+  top:-10px;
+  left:200px;  
+ }
+#balloon > h1{
+   font-size:20px;
+   margin-bottom: 10px;
+   font-family: 'Jua', sans-serif;
+}
+#balloon > h2{
+  font-size:13px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.5);
+}
+
+#contents__thumbnail > img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+#contents__main__pwp{
+  border: 4px solid rgba(0,0,0,0.5);
+  width: 30%;
+  height: 20%;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s all ease-in-out;
+  font-size:15px;
+}
+#contents__main__pwp:focus{
+  border: 4px solid black
+}
+#contents__main__withdraw{
+  width: 20%;
+  height: 10%;
+  border: 4px solid rgba(0,0,0,0.5); 
+  border-radius: 10px;
+}
+#contents__main__withdraw:hover{
+  cursor: pointer;
+}
+#contents__main__withdraw:active{
+  background-color: black;
+  color:white;
+}

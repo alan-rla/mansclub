@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" type="text/css" />
+    <title>Document</title>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="../static/challenge.js"></script>
+  <!-- <script src="../static/info_share.js"></script>
+  <script src="../static/free_board.js"></script> -->
+  <script src="../static/today_news.js"></script>
+  <script>
+    // const form = document.querySelector("#mainForm")
+    // form.addEventListener('submit',()=>
+    // )
+    //글쓰기 정보 서버에 보내기
+    function update() {
+      let url = $("#linkdata").val();
+      const mytoken = $.cookie("mytoken");
+      let score = 10;
+      $.ajax({
+        type: "POST",
+        url: "/templates/challenge",
+        data: { token_give: mytoken, url_give: url, score_give: score },
+        success: function (response) {
+          alert(response["msg"]);
+          window.location.reload();
+        },
+      });
+    }
+    //유저가 쓴 글정보 가져오기
+
+    // function writing() {
+    //     $('#writeWrapper').css('visibility', 'visible')
+    // }
+  </script>
+
+  <body>
+    <div id="wrapper">
+      <h1>사나이 클럽</h1>
+      <nav>
+        <div onclick="show_challenge()">챌린지</div>
+        <div onclick="show_info_share()">정보 공유</div>
+        <div onclick="show_free_board()">자유 게시판</div>
+      </nav>
+      <fieldset>
+        <main>
+          <form action="" id="mainForm" onsubmit="return false; ">
+            <!-- <p>*첼린지를 클릭해 보세요</p> -->
+            <div id="borde_wrapper">
+              <div class="borde_title">
+                <strong>첼린지 게시판</strong>
+              </div>
+              <div class="bordeListWrapper">
+                <div class="borde_list">
+                  <!-- <div class="top">
+                                    <textarea id="titleId" class="title">제목</textarea>
+                                    <textarea id="numId" class="num">번호</textarea>
+                                    <textarea id="contentsId" class="contents">글내용</textarea>
+                                    <textarea id="writerId" class="writer">작성자</textarea>
+                                    <textarea id="dateId" class="date">날짜</textarea>
+                                    <textarea id="scoreId" class="score">점수</textarea>
+                                </div> -->
+                  <!-- <div class="top">
+                                    <textarea class="num">5</textarea>
+                                    <textarea class="title">글 제목</textarea>
+                                    <textarea class="contents"></textarea>
+                                    <textarea class="writer">김수현</textarea>
+                                    <textarea class="date">11.15</textarea>
+                                    <textarea class="score">5</textarea>
+                                </div> -->
+                  금주의 첼린지 : 팔굽혀 펴기 100개
+                </div>
+                <div class="userdateWrapper">
+                  <label for="">텍스트 입력란</label
+                  ><input
+                    placeholder="첼린지 인증 영상을 올려주세요"
+                    type="text"
+                    id="linkdata"
+                  /><button onclick="update()">글쓰기</button>
+                </div>
+              </div>
+                <div id="chall_box">
+                  <!-- <div id="chall_posts">
+                      <label for=""></label>
+                      <input type="text" placeholder="닉네임" />
+                      <label for=""></label>
+                      <input type="text" placeholder="유튜브 url" />
+                      <button>인증</button>
+                  </div> -->
+                </div>
+              <!-- <button class="writeBtn" onclick="writing()" type="button">글쓰기</button> -->
+            </div>
+          </form>
+        </main>
+        <aside>
+          <div>
+            <div id="mainSignup">
+              <button>로그인</button>
+              <br />
+              <button>회원가입</button>
+            </div>
+          </div>
+          <content>
+            <h2>News</h2>
+            <form action="">
+              <div id="NewsId">
+                <ul id="today_news"></ul>
+              </div>
+            </form>
+          </content>
+        </aside>
+      </fieldset>
+    </div>
+
+    <footer>
+      <h2>항해 99 2조</h2>
+      <p>이민용(팀장)</p>
+      <p>김수현</p>
+      <p>권인후</p>
+      <p>김수영</p>
+      //있던 내용 사라지기 // ${'#border_title'}.append((${'#test'})) //새
+      게시판 내용 들고오기=
+    </footer>
+  </body>
+</html>
