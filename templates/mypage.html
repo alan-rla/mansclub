@@ -9,9 +9,16 @@
     <script src="../static/mypage.js"></script>
   </head>
   <body>
-    <div id="header"></div>
+    <div id="header">
+      <img
+        id="header__logo"
+        src="{{ url_for('static', filename='logo.jpg') }}"
+      />
+    </div>
     <div id="contents">
-      <div id="contents__header"><h1>마이 페이지</h1></div>
+      <div id="contents__header">
+        <img src="{{ url_for('static', filename='mypage.jpg') }}" />
+      </div>
       <div id="contents__main">
         <input
           id="contents__main__paC"
@@ -30,6 +37,12 @@
           type="button"
           value="탈퇴하기"
           onclick="go_leave()"
+        />
+        <input
+          id="contents__main__home"
+          type="button"
+          value="홈으로"
+          onclick="go_home()"
         />
       </div>
     </div>

@@ -15,9 +15,12 @@ body{
 #header{
   width:100%;
   height:10%;
-  background-color: aqua;
 }
-
+#header__logo{
+  width: 150px;
+  height: 150px;
+  margin-left: 20px;
+}
 #contents{
   display: flex;
   width:100%;
@@ -26,12 +29,15 @@ body{
   flex-direction: column;
 }
 #contents__header{
-  margin:40px 0 ;
+  display: flex;
+  width: 100%;
+  height: 40%;
+  margin:0 0 40px 0 ;
+  justify-content: center;
+  align-items: center;
 }
-#contents__header h1{
-  text-align: center;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size:50px;
+#contents__header img{
+
 }
 #contents__main{
   width:60%;
@@ -59,14 +65,40 @@ body{
   font-size: 20px;
   font-weight: 700;
 }
-#contents__main > input:hover{
+#confirmbtn:hover,
+#canclebtn:hover,
+#contents__main__paC:hover,
+#contents__main__profC:hover,
+#contents__main__withdraw:hover,
+#contents__main__home:hover{
   cursor: pointer;
 }
-#contents__main > input:active{
+#confirmbtn:active,
+#canclebtn:active,
+#contents__main__paC:active,
+#contents__main__profC:active,
+#contents__main__withdraw:active,
+#contents__main__home:active{
   background-color: black;
   color:white;
 }
 #contents__main__profC{
   margin-bottom: 50px;
 }
-
+#nickname_change,
+#pw_original,
+#pw_change,
+#pw_change_confirm{
+  transition: all 0.5s ease-in-out;
+}
+#nickname_change:focus,
+#pw_original:focus,
+#pw_change:focus,
+#pw_change_confirm:focus{
+  border: 4px solid black;
+}
+#contents__main h1{
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size:40px;
+  margin-bottom: 50px;
+}

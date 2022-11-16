@@ -10,11 +10,24 @@
   </head>
 
   <body>
-    <div id="header"></div>
+    <div id="header">
+      <img
+        id="header__logo"
+        src="{{ url_for('static', filename='logo.jpg') }}"
+      />
+    </div>
     <div id="contents">
-      <div id="contents__thumbnail"><img src="../static/bg.jpg" /></div>
+      <div id="contents__thumbnail">
+        <img
+          id="contents__thumnail__img"
+          src=" {{ url_for('static', filename='bg.jpg') }}"
+        />
+      </div>
+
       <div id="contents__main">
-        <div id="contents__main__header"><h1>사나이 클럽 입구</h1></div>
+        <div id="contents__main__header">
+          <img src=" {{ url_for('static', filename='register.jpg') }}" />
+        </div>
         <div>
           <input
             required
@@ -48,6 +61,15 @@
           />
           <input id="contents__main__cancel" type="button" value="취소" />
         </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div>
+        <h2>
+          <p>항해99</p>
+          2조
+        </h2>
+        <span>이민용(팀장) 김수영 김수현 권인후</span>
       </div>
     </div>
   </body>

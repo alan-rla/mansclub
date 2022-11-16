@@ -89,10 +89,12 @@ def api_register():
 
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
-    db.user.insert_one(
-        {'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive, 'point': 0, 'tier': 1})
-
-    return jsonify({'result': 'success'})
+    id_check = db.user.find_one({'id': id_receive}, {'_id': 0})
+    if id_check ==None:
+        db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive, 'point': 0, 'tier': 1})
+        return jsonify({'result': 'success'})
+    else :
+        return jsonify({'result': 'fail'})
 
 
 # [로그인 API]
@@ -126,21 +128,6 @@ def api_login():
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
-# [비밀번호 변경 API]
-@app.route('/api/pwchange', methods=['POST'])
-def api_pwchange():
-        token_receive = request.form['token_give']
-        pw_receive = request.form['pwconfirm_give']
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        
-        pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
-        if pw_hash == userinfo['pw']:
-            db.user.delete_one({'id':payload['id']})
-            return jsonify({'result': userinfo})
-        else :
-            return jsonify({'result': 'fail'})
-
 # [탈퇴 API]
 @app.route('/api/leave', methods=['POST'])
 def api_leave():
@@ -148,13 +135,64 @@ def api_leave():
         pw_receive = request.form['pwconfirm_give']
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         
+
         pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
         if pw_hash == userinfo['pw']:
             db.user.delete_one({'id':payload['id']})
-            return jsonify({'result': userinfo})
+            return jsonify({'result': 'success'})
         else :
             return jsonify({'result': 'fail'})
+
+# [비번변경 API]
+@app.route('/api/pwchange', methods=['POST'])
+def api_pwchange():
+        token_receive = request.form['token_give']
+        pw_receive = request.form['pw_give']
+        new_pw_receive = request.form['new_pw_give']
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+        #받아온 원래 패스워드
+        pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest() 
+        #새로운 패스워드
+        new_pw_hash = hashlib.sha256(new_pw_receive.encode('utf-8')).hexdigest()
+        
+        #db에 저장된 원래 패스워드 
+        pw_original = db.user.find_one({'id': payload['id']}, {'_id': 0})['pw']
+
+        if pw_hash == pw_original:
+            db.user.update_one({'id':payload['id']},{'$set':{'pw':new_pw_hash}})
+            return jsonify({'result':'success' })
+        else :
+            return jsonify({'result': 'fail'})
+
+# [닉네임변경 API]
+@app.route('/api/nicknamechange', methods=['POST'])
+def api_nickchange():
+        token_receive = request.form['token_give']
+        nick_receive = request.form['nickname_give']
+       
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        nickname_check = db.user.find_one({'nick': nick_receive}, {'_id': 0})
+  
+        if nickname_check == None:
+            db.user.update_one({'id':payload['id']},{'$set':{'nick':nick_receive}})
+            return jsonify({'result':'success' })
+        else :
+            return jsonify({'result': 'fail'})  
+
+
+#[닉네임 체크용]
+@app.route('/api/nickcheck', methods=['POST'])
+def api_nickcheck():
+        token_receive = request.form['token_give']
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+        nickname_check = db.user.find_one({'id': payload['id']}, {'_id': 0})['nick']
+       
+        return jsonify({'nick': nickname_check})  
+
+
 # [유저 정보 확인 API]
 # 로그인된 유저만 call 할 수 있는 API입니다.
 # 유효한 토큰을 줘야 올바른 결과를 얻어갈 수 있습니다.
