@@ -90,7 +90,7 @@ def api_register():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     id_check = db.user.find_one({'id': id_receive}, {'_id': 0})
-    if id_check ==None:
+    if id_check == None:
         db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive, 'point': 0, 'tier': 1})
         return jsonify({'result': 'success'})
     else :
@@ -187,9 +187,7 @@ def api_nickchange():
 def api_nickcheck():
         token_receive = request.form['token_give']
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-
         nickname_check = db.user.find_one({'id': payload['id']}, {'_id': 0})['nick']
-       
         return jsonify({'nick': nickname_check})  
 
 
