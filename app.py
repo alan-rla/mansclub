@@ -317,6 +317,20 @@ def news_get():
         news_list.append(doc)
     return jsonify({'news':news_list})
 
+# 점수 랭킹 보여주기
+@app.route('/rank', methods=["GET"])
+def rank_get():
+    man_list = sorted(list(db.user.find({},{'_id':False})), key=lambda d: d['point'], reverse=True)
+    rank = []
+    for man in man_list:
+        nick = man['nick']
+        point = man['point']
+        doc = {
+            'nick':nick,
+            'point':point
+        }
+        rank.append(doc)
+    return jsonify({'rank': rank})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

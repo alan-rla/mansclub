@@ -10,8 +10,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <script src="../static/challenge.js"></script>
-  <!-- <script src="../static/info_share.js"></script>
-  <script src="../static/free_board.js"></script> -->
+
+  <script src="../static/rank.js"></script>
   <script src="../static/today_news.js"></script>
   <script>
     $(document).ready(function () {
@@ -50,6 +50,87 @@
       $.removeCookie("mytoken");
       window.location.reload();
     }
+
+    function show_chall_board() {
+      const challBtn = document.querySelector("#chall_btn");
+      const rankBtn = document.querySelector("#rank_btn");
+      chall_btn.style.backgroundColor = "black";
+      chall_btn.style.color = "white";
+
+      rank_btn.style.backgroundColor = "white";
+      rank_btn.style.color = "black";
+
+      $("#borde_wrapper").empty();
+      let temp_html = ` <div class="borde_title">
+                <strong id="board_header">챌린지 게시판</strong>
+              </div>
+              <div class="bordeListWrapper">
+                <div class="borde_list">금주의 챌린지 : 팔굽혀 펴기 100개</div>
+                <div class="userdateWrapper">
+                  <label for=""></label>
+                  <label></label>
+                  <form action onsubmit="post_challenge()">
+                    <input
+                      type="url"
+                      placeholder="https://example.com"
+                      size="30"
+                      id="linkdata"
+                      required
+                    />
+                    <button type="submit">글쓰기</button>
+                  </form>
+                </div>
+              </div>
+              <table id="chall_box">
+                <thead>
+                  <tr>
+                    <th><span>작성자</span></th>
+                    <th><span>인증 링크</span></th>
+                    <th><span>인증 하기</span></th>
+                  </tr>
+                </thead>
+                <tbody id="chall_posts"></tbody>
+              </table>
+            </div>`;
+      $("#borde_wrapper").append(temp_html);
+      show_challenge();
+    }
+    function show_rank_board() {
+      $("#borde_wrapper").empty();
+      const challBtn = document.querySelector("#chall_btn");
+      const rankBtn = document.querySelector("#rank_btn");
+      rank_btn.style.backgroundColor = "black";
+      rank_btn.style.color = "white";
+
+      chall_btn.style.backgroundColor = "white";
+      chall_btn.style.color = "black";
+
+      let temp_html = ` <div class="borde_title">
+                <strong id="board_header">랭크</strong></div>
+                  <div class="bordeListWrapper">
+                <div id="borde_list2"></div>
+                    </div>
+                    <div id="rank_box_frame">
+                <table id="rank_box">
+                <thead>
+                  <tr>
+                    <th><span>순위</span></th>
+                    <th><span>닉네임</span></th>
+                    <th><span>등급</span></th>
+                    <th><span>점수</span></th>
+                  </tr>
+                </thead>
+                <tbody id="rank_posts"></tbody>
+              </table>
+              <img 
+              id="rank__grade"
+            src="{{ url_for('static', filename='grade.jpg') }}"
+            /></div>
+                    `;
+
+      $("#borde_wrapper").append(temp_html);
+      show_rank();
+    }
   </script>
   <body>
     <input id="point" type="hidden" value="{{point}}" />
@@ -60,6 +141,10 @@
             id="header__logo"
             src="{{ url_for('static', filename='logo.jpg') }}"
         /></a>
+        <button id="chall_btn" onclick="show_chall_board()">
+          챌린지 게시판
+        </button>
+        <button id="rank_btn" onclick="show_rank_board()">랭크</button>
       </div>
       <div></div>
       <fieldset>
