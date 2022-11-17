@@ -6,6 +6,9 @@ import jwt
 from flask import (Flask, jsonify, redirect, render_template, request, session,
                    url_for)
 from pymongo import MongoClient
+from bs4 import BeautifulSoup
+import requests
+import uuid
 
 app = Flask(__name__)
 # application = Flask(__name__, static_folder='static', template_folder='templates')
@@ -15,6 +18,12 @@ ca = certifi.where()
 client = MongoClient(
     "mongodb+srv://test:sparta@cluster0.cctcpnr.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
 db = client.mansclub
+
+# 크롤링
+headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data = requests.get('https://sports.daum.net/',headers=headers)
+soup = BeautifulSoup(data.text, 'html.parser')
+
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
 # 이 문자열은 서버만 알고있기 때문에, 내 서버에서만 토큰을 인코딩(=만들기)/디코딩(=풀기) 할 수 있습니다.
 SECRET_KEY = 'SPARTA'
@@ -33,7 +42,6 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"id": payload['id']})
-        print(user_info)
         return render_template('index.html', nickname=user_info["nick"])
 
     except jwt.ExpiredSignatureError:
@@ -206,7 +214,6 @@ def api_valid():
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload)
 
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
@@ -217,6 +224,91 @@ def api_valid():
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
     except jwt.exceptions.DecodeError:
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
+
+
+
+# 챌린지 포스트
+@app.route('/templates/challenge', methods=['POST'])
+def challenge_post():
+    num_receive = uuid.uuid4().hex ##게시글 번호
+    token_receive = request.form['token_give'] ##작성자 계정
+    url_receive = request.form['url_give'] ## 게시글 내용
+    score_receive = request.form['score_give'] ## 챌린지 점수
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    count = 0
+
+    doc = {
+        'num':num_receive,
+        'writer':payload['id'],
+        'url':url_receive,
+        'score':score_receive,
+        'confirmer':[]
+    }
+    db.challenge.insert_one(doc)
+    return jsonify({'msg':'저장 완료!'})
+
+# 챌린지 보여주기
+@app.route('/templates/challenge',methods=["GET"])
+def challenge_get():
+    challenge_list = list(db.challenge.find({}, {'_id': False}))
+    # return dumps({'trading_posts': trading_list})
+    return jsonify({'challenges': challenge_list})
+
+# 챌린지 인증
+@app.route('/api/challenge',methods=["POST"])
+def chall_confirm ():
+    token_receive = request.form['token_give'] ##인증자 계정
+    num_receive = request.form['num_give'] ##게시글 번호
+    ## 인증자 점수 찾기
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.user.find_one({"id": payload['id']})
+    user_point = user_info['point']
+    ## 게시글 정보 찾기
+    post = db.challenge.find_one({"num": num_receive}) ## HEX값으로 찾은 게시글 object
+    count = len(post['confirmer']) ## 게시글의 인증 횟수
+    # 게시자인지 확인
+    if user_info['id'] == post['writer']:
+        return jsonify({'writer': True})
+    # 이미 인증했는지, 점수가 부족한지 확인
+    elif user_info['id'] in post['confirmer'] or user_point < 100:
+        return jsonify({'confirmed': True})
+    # 게시글 인증이 이미 3회 완료됐는지 확인
+    elif count >= 3:
+        return jsonify({'count_full': True})
+    # 인증 횟수 추가하기
+    else:
+        db.challenge.update_one({'num':num_receive},{'$push': {'confirmer':payload['id']}})
+        # 인증 3회 체웠을 때
+        if len(db.challenge.find_one({"num": num_receive})['confirmer']) < 3:
+            return jsonify({'complete': True})
+        else:
+            ## 챌린지 인증 완료되면 게시자 점수 찾고 덧셈하기
+            writer = post['writer'] ## 게시자의 id
+            point = int(db.user.find_one({"id": writer})['point']) ## 게시자의 현재 점수
+            score = int(post['score']) ## 게시글의 점수
+            db.user.update_one({'id':writer},{'$set':{'point':point+score}})
+            return jsonify({'complete': True})
+
+# 뉴스 크롤링
+@app.route('/news', methods=['GET'])
+def news_get():
+    news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
+    news_list = []
+    for new in news:
+        rank = new.select_one('em').text
+        title = new.select_one('strong > a').text
+        link = new.select_one('strong > a').attrs['href']
+
+        if len(title) > 25:
+            title = title[0:20] + '...'
+
+        doc = {
+            'rank':rank, 
+            'title':title, 
+            'link':link
+            }
+        news_list.append(doc)
+    return jsonify({'news':news_list})
 
 
 if __name__ == '__main__':

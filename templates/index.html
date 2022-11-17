@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" type="text/css" />
+    <title>Document</title>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="../static/challenge.js"></script>
+  <!-- <script src="../static/info_share.js"></script>
+  <script src="../static/free_board.js"></script> -->
+  <script src="../static/today_news.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#mainSignup").empty();
+      if ($.cookie("mytoken")) {
+        let temp_html = `<button onclick="location.href = '/mypage'">마이페이지</button>`;
+        $("#mainSignup").append(temp_html);
+      } else {
+        let temp_html = `<button onclick="location.href = '/login'">로그인</button><br/>
+                          <button onclick="location.href = '/member'">회원가입</button>`;
+        $("#mainSignup").append(temp_html);
+      }
+    });
+  </script>
+  <body>
+    <div id="wrapper">
+      <div>
+        <a href="/">
+          <img
+            id="header__logo"
+            src="{{ url_for('static', filename='logo.jpg') }}"
+        /></a>
+      </div>
+      <div></div>
+      <fieldset>
+        <main>
+          <div action="" id="mainForm" onsubmit="return false; ">
+            <div id="borde_wrapper">
+              <div class="borde_title">
+                <strong id="board_header">챌린지 게시판</strong>
+              </div>
+              <div class="bordeListWrapper">
+                <div class="borde_list">금주의 챌린지 : 팔굽혀 펴기 100개</div>
+                <div class="userdateWrapper">
+                  <label for=""></label>
+                  <label></label>
+                  <form action onsubmit="post_challenge()">
+                    <input
+                      type="url"
+                      placeholder="https://example.com"
+                      size="30"
+                      id="linkdata"
+                      required
+                    />
+                    <button type="submit">글쓰기</button>
+                  </form>
+                </div>
+              </div>
+              <table id="chall_box">
+                <thead>
+                  <tr>
+                    <th><span>작성자</span></th>
+                    <th><span>인증 링크</span></th>
+                    <th><span>인증 하기</span></th>
+                  </tr>
+                </thead>
+                <tbody id="chall_posts"></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+        <aside>
+          <div id="mainSignup"></div>
+          <div id="NewsId">
+            <h2>Today's News</h2>
+            <ul id="today_news"></ul>
+          </div>
+        </aside>
+      </fieldset>
+    </div>
+
+    <div id="footer">
+      <div>
+        <h2>
+          <p>항해99</p>
+          2조
+        </h2>
+        <span>이민용(팀장) 김수영 김수현 권인후</span>
+      </div>
+    </div>
+  </body>
+</html>
