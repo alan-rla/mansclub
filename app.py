@@ -42,7 +42,7 @@ def home():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"id": payload['id']})
-        return render_template('index.html', nickname=user_info["nick"])
+        return render_template('index.html', nickname=user_info["nick"],point=user_info["point"])
 
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -292,19 +292,26 @@ def chall_confirm ():
 # 뉴스 크롤링
 @app.route('/news', methods=['GET'])
 def news_get():
-    news = soup.select('#cSub > div.feature_top > div.top_rank > ol:nth-child(3) > li')
+    news1 = soup.select('#newsList > div:nth-child(2) > ul:nth-child(1) > li')
+    news2 = soup.select('#newsList > div:nth-child(2) > ul:nth-child(2) > li')
     news_list = []
-    for new in news:
-        rank = new.select_one('em').text
-        title = new.select_one('strong > a').text
-        link = new.select_one('strong > a').attrs['href']
-
-        if len(title) > 25:
-            title = title[0:20] + '...'
-
+    for new in news1:
+        title = new.select_one('li > a').text
+        link = new.select_one('li > a').attrs['href']
+        if len(title) > 15:
+            title = title[0:15] + '...'
         doc = {
-            'rank':rank, 
-            'title':title, 
+            'title':title,
+            'link':link
+            }
+        news_list.append(doc)
+    for new in news2:
+        title = new.select_one('li > a').text
+        link = new.select_one('li > a').attrs['href']
+        if len(title) > 18:
+            title = title[0:18] + '...'
+        doc = {
+            'title':title,
             'link':link
             }
         news_list.append(doc)

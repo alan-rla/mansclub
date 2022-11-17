@@ -15,18 +15,44 @@
   <script src="../static/today_news.js"></script>
   <script>
     $(document).ready(function () {
+      const point = $("#point").val();
       $("#mainSignup").empty();
       if ($.cookie("mytoken")) {
-        let temp_html = `<button onclick="location.href = '/mypage'">마이페이지</button>`;
+        let rank = "";
+        if (point < 100) {
+          rank = "Lv.1 슈퍼겁쟁이";
+        } else if (point < 300) {
+          rank = "Lv.2 겁쟁이";
+        } else if (point < 500) {
+          rank = "Lv.3 사나이";
+        } else if (point < 700) {
+          rank = "Lv.4 진짜사나이";
+        } else if (point >= 700) {
+          rank = "Lv.5 슈퍼사나이";
+        }
+        let temp_html = `<div id="myinfo_box">
+                             <div><span>${rank}</span></div>
+                                <div><p>{{nickname}}님</p><a href="/mypage">내정보</a></div>
+                                </div>
+        <div id="logout_zone"><button onclick="logout()">로그아웃</button></div>`;
+        // let temp_html = `<div>${rank} {{nickname}}</div>
+        //                 <button onclick="location.href = '/mypage'">마이페이지</button><br>
+        //                 <button onclick="logout()">로그아웃</button>
+        //                 `;
         $("#mainSignup").append(temp_html);
       } else {
-        let temp_html = `<button onclick="location.href = '/login'">로그인</button><br/>
+        let temp_html = `<button onclick="location.href = '/login'">로그인</button><br>
                           <button onclick="location.href = '/member'">회원가입</button>`;
         $("#mainSignup").append(temp_html);
       }
     });
+    function logout() {
+      $.removeCookie("mytoken");
+      window.location.reload();
+    }
   </script>
   <body>
+    <input id="point" type="hidden" value="{{point}}" />
     <div id="wrapper">
       <div>
         <a href="/">

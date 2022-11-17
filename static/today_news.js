@@ -9,11 +9,10 @@ function show_news() {
     data: {},
     success: function (response) {
       let rows = response['news']
-      for (const row of rows) {
-        let rank = row['rank']
-        let title = row['title']
-        let link = row['link']
-
+      for (let i = 0; i < rows.length; i++) {
+        let rank = i+1;
+        let title = rows[i]['title'];
+        let link = rows[i]['link'];
         let temp_html = `
                                     <strong>${rank} </strong><a href="${link}" >${title}</a><br>
                                     `
