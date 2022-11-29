@@ -22,8 +22,10 @@ function join_member() {
             if (response['result'] == 'success') {
                 alert('회원가입이 완료되었습니다.')
                 window.location.href = '/login'
-            } else {
+            } else if(response['result'] == 'id error'){
                 alert('이미 사용중인 ID입니다. 다른 ID를 사용해주세요')
+            } else if(response['result'] == 'nick error'){
+                alert('이미 사용중인 닉네임입니다. 다른 ID를 사용해주세요')
             }
     }
     });

@@ -98,11 +98,14 @@ def api_register():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     id_check = db.user.find_one({'id': id_receive}, {'_id': 0})
-    if id_check == None:
+    nick_check = db.user.find_one({'nick': nickname_receive}, {'_id': 0})
+    if id_check != None :
+        return jsonify({'result': 'id error'})
+    elif nick_check != None:
+        return jsonify({'result': 'nick error'})
+    else :
         db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'nick': nickname_receive, 'point': 0, 'tier': 1})
         return jsonify({'result': 'success'})
-    else :
-        return jsonify({'result': 'fail'})
 
 
 # [로그인 API]
